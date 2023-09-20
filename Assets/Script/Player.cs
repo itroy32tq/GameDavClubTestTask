@@ -4,29 +4,20 @@ using UnityEngine;
 
 namespace PoketZone
 {
-    public class Player : MonoBehaviour, ICanBeDamaged
+    public class Player : Unit
     {
-        [SerializeField, Range(1f, 20f)] private int _health;
 
         [SerializeField] private List<Weapon> _weapons;
 
         [SerializeField] private Transform _shootPoint;
-        [SerializeField] private Rigidbody2D _rigidbody;
 
         private Weapon _currentWeapon;
 
-        private int _currentHealth;
-        public int Health => _currentHealth;
-
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
             _currentWeapon = _weapons[0];
-            _currentHealth = _health;
-        }
-
-        public void TakeDamage(int damage)
-        {
-            _currentHealth -= damage;
+            
         }
 
         private void Update() 

@@ -2,7 +2,7 @@
 
 namespace PoketZone
 {
-    public class Bullet : MonoBehaviour, IBullet
+    public class Bullet : MonoBehaviour, ICanApplyDamage
     {
         [SerializeField, Range(1f, 6f)] private int _damage;
         [SerializeField, Range(1f, 10f)] private float _speed;
@@ -18,6 +18,15 @@ namespace PoketZone
         {
             //todo логика полета, надо подумать в зависимости от направления
             transform.Translate(_direction * _speed * Time.deltaTime);
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.gameObject.TryGetComponent(out ICanBeDamaged unit))
+            { 
+                ApplyDamage(unit);
+                Destroy(gameObject);
+            }
         }
     }
 }

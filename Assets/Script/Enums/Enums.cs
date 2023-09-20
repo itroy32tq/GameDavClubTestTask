@@ -4,8 +4,5 @@ using UnityEngine;
 
 namespace PoketZone
 {
-    public interface IBullet
-    {
-        void ApplyDamage(ICanBeDamaged canBeDamaged);
-    }
+    public enum EMode { idle, move, attack, transition };
 }
