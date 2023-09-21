@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace PoketZone
 {
-    public interface ICanBeMover
+    public class SimpleMonstr : Enemy
     {
-        void MakeMove(Vector2 direction);
+        
     }
 }

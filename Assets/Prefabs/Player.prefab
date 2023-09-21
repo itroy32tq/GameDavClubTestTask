@@ -178,8 +178,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1f72deb9929eb147acd5e780d7e6f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _speed: 1
   _health: 10
+  _rigidbody: {fileID: 5769265705139930844}
+  _spriteRenderer: {fileID: 6387193506746340610}
   _weapons:
   - {fileID: 7953669213602446351, guid: b0b467825340e2b49be668f2a6df552b, type: 3}
   _shootPoint: {fileID: 2713401738440600368}
-  _rigidbody: {fileID: 5769265705139930844}

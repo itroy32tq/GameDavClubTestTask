@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace PoketZone
@@ -10,6 +11,7 @@ namespace PoketZone
         [SerializeField, Range(1f, 10f)] private float _speed = 1f;
         [SerializeField, Range(1f, 20f)] private int _health;
         [SerializeField] private Rigidbody2D _rigidbody;
+        private List<SpriteRenderer> _spriteRenderers;
 
         protected readonly Vector3[] Directions = new[]
         {
@@ -24,6 +26,13 @@ namespace PoketZone
         protected int Facing = 1;
         protected EMode Mode = EMode.idle;
 
+        protected virtual void Awake()
+        {
+            //todo костыль, по лучше иметь одни спрайт с изображением юнита
+            SpriteRenderer maineRenderer;
+            _spriteRenderers = GetComponentsInChildren<SpriteRenderer>().ToList();
+            if (TryGetComponent<SpriteRenderer>(out maineRenderer)) _spriteRenderers.Add(maineRenderer);
+        }
         protected virtual void Start()
         {
             _currentHealth = _health;
@@ -35,10 +44,21 @@ namespace PoketZone
 
             if (Health <= 0) Destroy(gameObject);
         }
-
-        public void MakeMove(int facing)
+            
+        public void MakeMove(Vector2 direction)
         {
-            _rigidbody.velocity = Directions[facing] * _speed;
+            if (direction.x < 0) FlipUnit(true);
+            else FlipUnit(false);
+
+            _rigidbody.velocity = direction * _speed;
+        }
+
+        private void FlipUnit(bool flip)
+        {
+            foreach (var render in _spriteRenderers)
+            { 
+                render.flipX = flip;
+            }
         }
     }
 }

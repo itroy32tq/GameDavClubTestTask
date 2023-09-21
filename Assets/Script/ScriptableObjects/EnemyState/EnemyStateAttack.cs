@@ -1,0 +1,42 @@
+using PoketZone;
+using System;
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "EnemyStateAttack", menuName = "Configurations/EnemyStateAttack")]
+public class EnemyStateAttack : EnemyState
+{
+    [SerializeField, Range(5f, 15f)] private float _attackDistance;
+    private Vector2 _direction;
+    public override void Update()
+    {
+        
+        _direction = Enemy.Target.transform.position - Enemy.transform.position;
+
+        if (isPlayerAlive() && IsCanAttack())
+        {
+            Debug.Log("Атака");
+        }
+        else if (!IsCanAttack())
+        {
+            NeedTransition = true;
+            TargetState = AvailableTransitions[0];
+        }
+        else 
+        {
+            NeedTransition = true;
+            TargetState = AvailableTransitions[1];
+        }
+
+    }
+
+    private bool isPlayerAlive()
+    {
+        return Enemy.Target.Health > 0;
+    }
+
+    private bool IsCanAttack()
+    {
+        return _direction.SqrMagnitude() <= _attackDistance * _attackDistance;
+    }
+
+}

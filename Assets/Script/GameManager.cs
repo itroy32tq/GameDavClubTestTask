@@ -4,8 +4,5 @@ using UnityEngine;
 
 namespace PoketZone
 {
-    public interface ICanBeMover
-    {
-        void MakeMove(Vector2 direction);
-    }
+    public class GameManager : MonoBehaviour { }
 }

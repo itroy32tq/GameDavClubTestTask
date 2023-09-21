@@ -8,6 +8,7 @@ namespace PoketZone
         [SerializeField, Range(1f, 10f)] private float _speed;
 
         private Vector2 _direction = Vector2.left;
+        public Vector2 Direction { get => _direction; set => _direction = value; }
 
         public void ApplyDamage(ICanBeDamaged canBeDamaged)
         {
