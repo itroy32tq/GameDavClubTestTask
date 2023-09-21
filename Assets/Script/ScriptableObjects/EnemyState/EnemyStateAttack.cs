@@ -10,7 +10,7 @@ public class EnemyStateAttack : EnemyState
     public override void Update()
     {
         
-        _direction = Enemy.Target.transform.position - Enemy.transform.position;
+        _direction = Enemy.GetDistanceToTarget();
 
         if (isPlayerAlive() && IsCanAttack())
         {

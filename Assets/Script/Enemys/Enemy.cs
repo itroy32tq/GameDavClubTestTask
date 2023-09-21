@@ -36,7 +36,10 @@ namespace PoketZone
                 }
             }
         }
-
+        public Vector2 GetDistanceToTarget()
+        {
+            return Target.transform.position - transform.position;
+        }
 
     }
 }
