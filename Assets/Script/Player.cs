@@ -9,20 +9,9 @@ namespace PoketZone
     {
 
         [SerializeField] private List<Weapon> _weapons;
-
         [SerializeField] private Transform _shootPoint;
-        private int dirHeld = -1;
-
-        private readonly Vector3[] directions = new Vector3[]
-        {
-            Vector3.right, Vector3.up, Vector3.left, Vector3.down
-        };
-
-        private readonly KeyCode[] keys = new KeyCode[]
-        {
-            KeyCode.RightArrow, KeyCode.UpArrow, KeyCode.LeftArrow, KeyCode.DownArrow
-        };
-
+        [SerializeField] private VariableJoystick _joystick;
+       
         private Weapon _currentWeapon;
 
         protected override void Start()
@@ -36,22 +25,12 @@ namespace PoketZone
         private void Update() 
         {
             //todo
-            if (Input.GetMouseButton(0))
-            {
-                _currentWeapon.Shoot(_shootPoint);
-            }
-            
-            //todo для проверки передвижения
-            for (int i = 0; i < 4; i++)
-            {
-                if (Input.GetKey(keys[i])) dirHeld = i;
-            }
+            //if (Input.GetMouseButton(0)) _currentWeapon.Shoot(_shootPoint);
 
-            if (dirHeld == -1) return;
-            else
-            {
-                MakeMove(directions[dirHeld]);
-            }
+
+            if (_joystick.Direction == Vector2.zero) MakeMove(Vector2.zero);
+            MakeMove(_joystick.Direction);
+
         }
     }
 }

@@ -48,9 +48,9 @@ namespace PoketZone
         public void MakeMove(Vector2 direction)
         {
             if (direction.x < 0) FlipUnit(true);
-            else FlipUnit(false);
-
+            if (direction.x > 0) FlipUnit(false);
             _rigidbody.velocity = direction * _speed;
+
         }
 
         private void FlipUnit(bool flip)
