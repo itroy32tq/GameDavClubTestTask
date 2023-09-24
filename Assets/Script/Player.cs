@@ -1,16 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
 using UnityEngine.UIElements.Experimental;
 
 namespace PoketZone
 {
     public class Player : Unit
     {
-
         [SerializeField] private List<Weapon> _weapons;
         [SerializeField] private Transform _shootPoint;
         [SerializeField] private VariableJoystick _joystick;
+        [SerializeField] private Button _shootButton;
        
         private Weapon _currentWeapon;
 
@@ -18,17 +21,19 @@ namespace PoketZone
         {
             //todo
             base.Start();
+            _shootButton.onClick.AddListener(OnShootButtonClick);
             _currentWeapon = _weapons[0];
             
         }
 
+        private void OnShootButtonClick()
+        {
+            _currentWeapon.Shoot(_shootPoint);
+        }
+
         private void Update() 
         {
-            //todo
-            //if (Input.GetMouseButton(0)) _currentWeapon.Shoot(_shootPoint);
 
-
-            if (_joystick.Direction == Vector2.zero) MakeMove(Vector2.zero);
             MakeMove(_joystick.Direction);
 
         }
