@@ -41,7 +41,15 @@ public class InventoryWithSlotsService
         }
         SetupInventoryUI(Inventory);
     }
-
+    /// <summary>
+    /// удаляем элемент по клику на кнопку из инвентаря
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="uiitem"></param>
+    public void TryRemoveItemOnClick(object sender, UIItem uiitem)
+    {
+        Inventory.Remove(sender, ((UIInventoryItem)uiitem).Item.Info.Id);
+    }
     private void SetupInventoryUI(InventoryWithSlots inventory)
     { 
         var allSlots = Inventory.GetAllSlots();

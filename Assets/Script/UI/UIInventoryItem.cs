@@ -5,6 +5,7 @@ public class UIInventoryItem : UIItem
 {
     [SerializeField] private Image _imageIcon;
     [SerializeField] private Text _textAmount;
+    
 
     public IInventoryItem Item {get; private set; }
 

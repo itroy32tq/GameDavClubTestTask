@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,8 +15,7 @@ public class UIInventory : MonoBehaviour
     [SerializeField] private PlayerConfiguration _playerConfiguration;
 
     private List<UIInventorySlot> _uiSlotList = new List<UIInventorySlot>();
-
-    List<KeyValuePair<InventoryItemInfo, int>> _itemsData;
+    private List<UIItem> _uiItemList = new List<UIItem>();
 
     private InventoryWithSlotsService _service;
     public InventoryWithSlots Inventory => _service.Inventory;
@@ -33,7 +33,15 @@ public class UIInventory : MonoBehaviour
         {
             var slotOnject =  Instantiate(_uiSlot, _grid);
             _uiSlotList.Add(slotOnject.GetComponent<UIInventorySlot>());
+            var uiItem = slotOnject.GetComponentInChildren<UIItem>();
+            uiItem.OnUIItemRemoveButtonClickEvent += OnUIItemRemoveButtonClick;
+            _uiItemList.Add(uiItem);
         }
+    }
+
+    private void OnUIItemRemoveButtonClick(object sender, UIItem item)
+    {
+        _service.TryRemoveItemOnClick(sender, item);
     }
 
     private void Start()
