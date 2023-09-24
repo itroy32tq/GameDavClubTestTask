@@ -10,6 +10,7 @@ public class UIInventory : MonoBehaviour
     [SerializeField, Range(1, 15)] private int _inventaryCapacity = 5;
     [SerializeField] private GameObject _uiSlot;
     [SerializeField] private Transform _grid;
+    [SerializeField] private Button _showInventoryButton;
 
     public InventoryWithSlots Inventory => tester.Inventory;
     private Tester tester;
@@ -25,9 +26,17 @@ public class UIInventory : MonoBehaviour
 
     private void Start()
     {
+        _showInventoryButton.onClick.AddListener(OnShowInventaryButtonClick);
         var uiSlots = GetComponentsInChildren<UIInventorySlot>();
         
         tester = new Tester(_appleInfo, _pepperInfo, uiSlots);
         tester.FillSlots();
+        _grid.gameObject.SetActive(false);
+    }
+    private void OnShowInventaryButtonClick()
+    { 
+        if (!_grid.gameObject.activeInHierarchy) 
+            _grid.gameObject.SetActive(true); 
+        else _grid.gameObject.SetActive(false);
     }
 }
