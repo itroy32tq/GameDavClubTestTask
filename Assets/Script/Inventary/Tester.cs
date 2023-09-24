@@ -5,9 +5,6 @@ using UnityEngine;
 
 public class Tester
 {
-    private IInventory _inventory;
-    [SerializeField] private int _inventaryCapacity = 10;
-
     private IInventoryItemInfo _appleInfo;
     private IInventoryItemInfo _pepperInfo;
     private UIInventorySlot[] _uislot;
@@ -20,7 +17,7 @@ public class Tester
     { 
         _appleInfo = appleInfo; _pepperInfo = pepperInfo; _uislot = uiSlots;
 
-        Inventory = new InventoryWithSlots(15);
+        Inventory = new InventoryWithSlots(_uislot.Length);
         Inventory.OnInventoryStateChangedEvent += OnInventoryStateChanged;
     }
 
@@ -37,7 +34,7 @@ public class Tester
         var allSlots = Inventory.GetAllSlots();
         var availableSlots = new List<IInventorySlot>(allSlots);
 
-        var filledSlots = 5;
+        var filledSlots = availableSlots.Count / 2;
         for (int i = 0; i < filledSlots; i++)
         { 
             var filledSlot = AddRandomApplesIntoRandomSlot(availableSlots);
