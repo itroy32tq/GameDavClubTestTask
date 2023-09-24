@@ -17,6 +17,8 @@ public class InventorySlot : IInventorySlot
 
     public int Capacity { get; set; }
 
+    public string ItemId => Item.Info.Id;
+
     public void Clear()
     {
         if (IsEmpty) 

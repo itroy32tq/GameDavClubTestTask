@@ -35,7 +35,7 @@ public interface IInventorySlot
     bool IsEmpty { get; }
     IInventoryItem Item { get; }
     Type ItemType { get; }
-
+    string ItemId { get; }
     int Amount { get; }
     int Capacity { get; set; }
 
@@ -51,13 +51,15 @@ public interface IInventory
     bool IsFull { get; }
 
     IInventoryItem GetItem(Type itemType);
+    IInventoryItem GetItem(string id);
     IInventoryItem[] GetAllItems();
     IInventoryItem[] GetAllItems(Type itemType);
+    IInventoryItem[] GetAllItems(string id);
     IInventoryItem[] GetEquippedItems();
     int GetItemAmout(Type itemType);
 
     bool TryToAdd(object sender, IInventoryItem item);
-    void Remove(object sender, Type itemType, int amout = 1);
+    void Remove(object sender, string itemId, int amout = 1);
     bool HasItem(Type type, out IInventoryItem item);
 
 }

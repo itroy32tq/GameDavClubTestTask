@@ -11,28 +11,39 @@ public class UIInventory : MonoBehaviour
     [SerializeField] private GameObject _uiSlot;
     [SerializeField] private Transform _grid;
     [SerializeField] private Button _showInventoryButton;
+    [SerializeField] private PlayerConfiguration _playerConfiguration;
 
-    public InventoryWithSlots Inventory => tester.Inventory;
-    private Tester tester;
+    private List<UIInventorySlot> _uiSlotList = new List<UIInventorySlot>();
+
+    List<KeyValuePair<InventoryItemInfo, int>> _itemsData;
+
+    private InventoryWithSlotsService _service;
+    public InventoryWithSlots Inventory => _service.Inventory;
+
+    
 
     private void Awake()
     {
-        for (int i = 0; i < _inventaryCapacity; i++)
+        InitUIInventory(_inventaryCapacity);
+    }
+
+    private void InitUIInventory(int capacity)
+    {
+        for (int i = 0; i < capacity; i++)
         {
-            Instantiate(_uiSlot, _grid);
+            var slotOnject =  Instantiate(_uiSlot, _grid);
+            _uiSlotList.Add(slotOnject.GetComponent<UIInventorySlot>());
         }
-        
     }
 
     private void Start()
     {
         _showInventoryButton.onClick.AddListener(OnShowInventaryButtonClick);
-        var uiSlots = GetComponentsInChildren<UIInventorySlot>();
-        
-        tester = new Tester(_appleInfo, _pepperInfo, uiSlots);
-        tester.FillSlots();
+
+        _service = new InventoryWithSlotsService(_uiSlotList, _playerConfiguration.GetBaseInventoryItems);
         _grid.gameObject.SetActive(false);
     }
+
     private void OnShowInventaryButtonClick()
     { 
         if (!_grid.gameObject.activeInHierarchy) 

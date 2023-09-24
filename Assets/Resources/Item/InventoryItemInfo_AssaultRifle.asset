@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4118ca3568b8aed4f8412615119fa7dc, type: 3}
-  m_Name: InventoryItemInfo_Aapple
+  m_Name: InventoryItemInfo_AssaultRifle
   m_EditorClassIdentifier: 
-  _id: apple
-  _title: Apple
-  _description: Big apple
-  _maxItemsInInventarySlot: 5
-  _icon: {fileID: 21300000, guid: 93fb4fd16319371449299496acb184f9, type: 3}
+  _id: assaultRifle
+  _title: AssaultRifle
+  _description: "\u0421lassic!"
+  _maxItemsInInventarySlot: 2
+  _icon: {fileID: 21300000, guid: 6532bc2c52f179142a7333cc0f5faeda, type: 3}
