@@ -10,6 +10,7 @@ namespace Assets.Script.Interfaces
     public interface IWeaponInfo
     {
         float ShootInterval { get;  }
-        GameObject Bullet { get; }
+        GameObject BulletPref { get; }
+        InventoryItemInfo BulletItem { get; }
     }
 }

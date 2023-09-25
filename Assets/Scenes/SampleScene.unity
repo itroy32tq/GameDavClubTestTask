@@ -4165,11 +4165,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13a3d8711024d3b44bb8982c2b36d06f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inventaryCapacity: 5
   _uiSlot: {fileID: 3241080508842837488, guid: b17068c6f7e76b04e966b6b0bd759401, type: 3}
   _grid: {fileID: 1161980924}
   _showInventoryButton: {fileID: 1084559677}
-  _playerConfiguration: {fileID: 11400000, guid: 3ea9aa6ee91745848992753ced0b8453, type: 2}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -5040,9 +5038,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1746393124}
     - target: {fileID: 1019265848581476464, guid: 8d0781e3141df0549b48586e9b2d3f4d, type: 3}
+      propertyPath: _playerInventory
+      value: 
+      objectReference: {fileID: 341420873}
+    - target: {fileID: 1019265848581476464, guid: 8d0781e3141df0549b48586e9b2d3f4d, type: 3}
+      propertyPath: _playerConfiguration
+      value: 
+      objectReference: {fileID: 11400000, guid: 3ea9aa6ee91745848992753ced0b8453, type: 2}
+    - target: {fileID: 1019265848581476464, guid: 8d0781e3141df0549b48586e9b2d3f4d, type: 3}
       propertyPath: _playerSpriteRenderer
       value: 
       objectReference: {fileID: 1036067325}
+    - target: {fileID: 3926782332400683277, guid: 8d0781e3141df0549b48586e9b2d3f4d, type: 3}
+      propertyPath: _uiInventory
+      value: 
+      objectReference: {fileID: 341420873}
     - target: {fileID: 7594964367609073159, guid: 8d0781e3141df0549b48586e9b2d3f4d, type: 3}
       propertyPath: m_Name
       value: Player

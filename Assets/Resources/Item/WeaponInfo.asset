@@ -18,4 +18,5 @@ MonoBehaviour:
   _maxItemsInInventarySlot: 2
   _icon: {fileID: 21300000, guid: 6532bc2c52f179142a7333cc0f5faeda, type: 3}
   _shootInterval: 0.7
-  _bullet: {fileID: 5824361563609614306, guid: 872ee8f815f1b0a4482bc6c54fc06d90, type: 3}
+  _bulletPref: {fileID: 5824361563609614306, guid: 872ee8f815f1b0a4482bc6c54fc06d90, type: 3}
+  _bulletItem: {fileID: 11400000, guid: 02f9159fb94d5224c9f83afef6fd72d8, type: 2}

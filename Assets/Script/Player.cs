@@ -15,10 +15,12 @@ namespace PoketZone
         [SerializeField] private Transform _shootPoint;
         [SerializeField] private VariableJoystick _joystick;
         [SerializeField] private Button _shootButton;
-        [SerializeField] private UIInventory Inventory;
+        [SerializeField] private UIInventory _playerInventory;
+        [SerializeField, Range(1, 15)] private int _inventaryCapacity = 5;
         [SerializeField] private SpriteRenderer _weaponSpriteRenderer;
         [SerializeField] private SpriteRenderer _playerSpriteRenderer;
         [SerializeField] private WeaponInfo _defaultWeaponInfo;
+        [SerializeField] private PlayerConfiguration _playerConfiguration;
 
         private Vector2 _shootDerection = Vector2.right;
 
@@ -28,7 +30,10 @@ namespace PoketZone
             base.Start();
             _shootButton.onClick.AddListener(OnShootButtonClick);
 
+            _playerInventory.InitUIInventory(_inventaryCapacity);
             SetCurentWeapon(_defaultWeaponInfo);
+            _playerInventory.InventoryService.FillSlots(_playerConfiguration.GetBaseInventoryItems);
+            
         }
 
         private void OnShootButtonClick()

@@ -6,16 +6,12 @@ public class InventoryWithSlotsService
     
     private List<UIInventorySlot> _uiSlotList;
 
-    List<BaseInventoryData> _baseItems;
-
     public InventoryWithSlots Inventory { get; }
-    public InventoryWithSlotsService(List<UIInventorySlot> uiSlotList, List<BaseInventoryData> baseItems) 
+    public InventoryWithSlotsService(List<UIInventorySlot> uiSlotList) 
     {
         _uiSlotList = uiSlotList;
-        _baseItems = baseItems;
 
-        Inventory = new InventoryWithSlots(uiSlotList.Count);
-        FillSlots();
+        Inventory = new InventoryWithSlots(_uiSlotList.Count);
         Inventory.OnInventoryStateChangedEvent += OnInventoryStateChanged;
     }
 
@@ -29,10 +25,10 @@ public class InventoryWithSlotsService
     /// <summary>
     /// переносим предметы и их количество из конфигурации в инвентарь
     /// </summary>
-    public void FillSlots()
+    public void FillSlots(List<BaseInventoryData> baseItems)
     { 
 
-        foreach (var baseItem in _baseItems) 
+        foreach (var baseItem in baseItems) 
         {
             var item = new InventoryItem(baseItem.itemInfo);
             item.State.Amount = baseItem.count;

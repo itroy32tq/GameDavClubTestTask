@@ -8,9 +8,13 @@ namespace Assets.Script.Weapons
     {
 
         [SerializeField] private float _shootInterval;
-        [SerializeField] private GameObject _bullet;
+        [SerializeField] private GameObject _bulletPref;
+        [SerializeField] private InventoryItemInfo _bulletItem;
 
         public float ShootInterval { get => _shootInterval; }
-        public GameObject Bullet { get => _bullet;  }
+        public GameObject BulletPref { get => _bulletPref;  }
+
+        public InventoryItemInfo BulletItem { get => _bulletItem; }
+
     }
 }
