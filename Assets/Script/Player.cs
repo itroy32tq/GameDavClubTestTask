@@ -1,3 +1,4 @@
+using Assets.Script.Weapons;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,25 +11,30 @@ namespace PoketZone
 {
     public class Player : Unit
     {
-        [SerializeField] private List<Weapon> _weapons;
+        [SerializeField] private WeaponController weaponController;
         [SerializeField] private Transform _shootPoint;
         [SerializeField] private VariableJoystick _joystick;
         [SerializeField] private Button _shootButton;
-       
-        private Weapon _currentWeapon;
+        [SerializeField] private UIInventory Inventory;
+        [SerializeField] private SpriteRenderer _weaponSpriteRenderer;
+        [SerializeField] private SpriteRenderer _playerSpriteRenderer;
+        [SerializeField] private WeaponInfo _defaultWeaponInfo;
+
+        private Vector2 _shootDerection = Vector2.right;
 
         protected override void Start()
         {
             //todo
             base.Start();
             _shootButton.onClick.AddListener(OnShootButtonClick);
-            _currentWeapon = _weapons[0];
-            
+
+            SetCurentWeapon(_defaultWeaponInfo);
         }
 
         private void OnShootButtonClick()
         {
-            _currentWeapon.Shoot(_shootPoint);
+            //из условия не понятно надо ли делать самонаводящуюся стрельбу
+            weaponController.Shoot(_shootPoint.position, GetShootDirection());
         }
 
         private void Update() 
@@ -37,5 +43,20 @@ namespace PoketZone
             MakeMove(_joystick.Direction);
 
         }
+        private void SetCurentWeapon(WeaponInfo weapon)
+        {
+            weaponController.ConfigureWeapon(weapon);
+            _weaponSpriteRenderer.sprite = weaponController.Weapon.SpriteIcon;
+            _weaponSpriteRenderer.sortingOrder = _playerSpriteRenderer.sortingOrder + 1;
+        }
+
+        private Vector2 GetShootDirection()
+        {
+            if (_shootDerection == Vector2.right)
+                return Faceing;
+            //todo
+            return _shootDerection;
+        }
+
     }
 }

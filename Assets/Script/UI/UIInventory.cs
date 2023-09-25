@@ -6,8 +6,7 @@ using UnityEngine.UI;
 
 public class UIInventory : MonoBehaviour
 {
-    [SerializeField] private InventoryItemInfo _appleInfo;
-    [SerializeField] private InventoryItemInfo _pepperInfo;
+
     [SerializeField, Range(1, 15)] private int _inventaryCapacity = 5;
     [SerializeField] private GameObject _uiSlot;
     [SerializeField] private Transform _grid;

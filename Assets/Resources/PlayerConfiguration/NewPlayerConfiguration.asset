@@ -16,7 +16,7 @@ MonoBehaviour:
     MaxHealth: 10
     MoveSpeed: 1
   _baseItems:
-  - itemInfo: {fileID: 11400000, guid: 51ee7f4912f65e545820848af1eeaaf3, type: 2}
+  - itemInfo: {fileID: 11400000, guid: bee96225da9ccea4d9a1430be900ce07, type: 2}
     count: 1
   - itemInfo: {fileID: 11400000, guid: 02f9159fb94d5224c9f83afef6fd72d8, type: 2}
     count: 65

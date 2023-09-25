@@ -4165,8 +4165,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13a3d8711024d3b44bb8982c2b36d06f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _appleInfo: {fileID: 11400000, guid: 51ee7f4912f65e545820848af1eeaaf3, type: 2}
-  _pepperInfo: {fileID: 11400000, guid: 02f9159fb94d5224c9f83afef6fd72d8, type: 2}
   _inventaryCapacity: 5
   _uiSlot: {fileID: 3241080508842837488, guid: b17068c6f7e76b04e966b6b0bd759401, type: 3}
   _grid: {fileID: 1161980924}
@@ -4443,6 +4441,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1f72deb9929eb147acd5e780d7e6f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!212 &1036067325 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 6387193506746340610, guid: 8d0781e3141df0549b48586e9b2d3f4d, type: 3}
+  m_PrefabInstance: {fileID: 1969938977}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1084559675
 GameObject:
   m_ObjectHideFlags: 0
@@ -4986,11 +4989,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 934833104873790878, guid: 8d0781e3141df0549b48586e9b2d3f4d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.12
+      value: -9
       objectReference: {fileID: 0}
     - target: {fileID: 934833104873790878, guid: 8d0781e3141df0549b48586e9b2d3f4d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.7879347
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 934833104873790878, guid: 8d0781e3141df0549b48586e9b2d3f4d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5025,6 +5028,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1019265848581476464, guid: 8d0781e3141df0549b48586e9b2d3f4d, type: 3}
+      propertyPath: Inventory
+      value: 
+      objectReference: {fileID: 341420873}
+    - target: {fileID: 1019265848581476464, guid: 8d0781e3141df0549b48586e9b2d3f4d, type: 3}
       propertyPath: _joystick
       value: 
       objectReference: {fileID: 899636116}
@@ -5032,6 +5039,10 @@ PrefabInstance:
       propertyPath: _shootButton
       value: 
       objectReference: {fileID: 1746393124}
+    - target: {fileID: 1019265848581476464, guid: 8d0781e3141df0549b48586e9b2d3f4d, type: 3}
+      propertyPath: _playerSpriteRenderer
+      value: 
+      objectReference: {fileID: 1036067325}
     - target: {fileID: 7594964367609073159, guid: 8d0781e3141df0549b48586e9b2d3f4d, type: 3}
       propertyPath: m_Name
       value: Player
