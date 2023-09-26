@@ -6,6 +6,7 @@ namespace PoketZone
     {
         [SerializeField] private string _name;
         [SerializeField, Range(1f,10f)] int _reward;
+
         //todo
         [SerializeField] private PlayerController _target;
         protected int Reward => _reward;
@@ -17,6 +18,10 @@ namespace PoketZone
         { 
             base.Start();
             ESM = new EnemyStateMachine(this);
+        }
+        public void Init(PlayerController player) 
+        { 
+            _target = player;
         }
 
         protected void Update()
