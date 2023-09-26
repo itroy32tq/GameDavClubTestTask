@@ -2,34 +2,33 @@ using Assets.Script.Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIInventoryItem : UIItem
+namespace Script.UI
 {
-    [SerializeField] private Image _imageIcon;
-    [SerializeField] private Text _textAmount;
-    
-
-    public IInventoryItem Item {get; private set; }
-
-    public void Refrash(IInventorySlot slot)
+    public class UIInventoryItem : UIItem
     {
-        if (slot.IsEmpty)
+        [SerializeField] private Image _imageIcon;
+        [SerializeField] private Text _textAmount;
+        public IInventoryItem Item { get; private set; }
+        public void Refrash(IInventorySlot slot)
         {
-            Cleanup();
-            return;
+            if (slot.IsEmpty)
+            {
+                Cleanup();
+                return;
+            }
+            Item = slot.Item;
+            _imageIcon.sprite = Item.Info.SpriteIcon;
+            _imageIcon.gameObject.SetActive(true);
+
+            var textAmountEnabled = slot.Amount > 1;
+            _textAmount.gameObject.SetActive(textAmountEnabled);
+            if (textAmountEnabled)
+                _textAmount.text = $"x{slot.Amount}";
         }
-        Item = slot.Item;
-        _imageIcon.sprite = Item.Info.SpriteIcon;
-        _imageIcon.gameObject.SetActive(true);
-
-        var textAmountEnabled = slot.Amount > 1;
-        _textAmount.gameObject.SetActive(textAmountEnabled);
-        if (textAmountEnabled)
-            _textAmount.text = $"x{slot.Amount}";
-    }
-
-    private void Cleanup()
-    {
-        _imageIcon.gameObject.SetActive(false);
-        _textAmount.gameObject.SetActive(false);
+        private void Cleanup()
+        {
+            _imageIcon.gameObject.SetActive(false);
+            _textAmount.gameObject.SetActive(false);
+        }
     }
 }

@@ -2,37 +2,40 @@ using Assets.Script.Interfaces;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class UIInventorySlot : UISlot
+namespace Script.UI
 {
-    [SerializeField] private UIInventoryItem _uiInventoryItem;
-    public IInventorySlot Slot { get; private set; }
-
-    private UIInventory _uiInventory;
-
-    private void Awake()
+    public class UIInventorySlot : UISlot
     {
-        _uiInventory = GetComponentInParent<UIInventory>();
-    }
-    public void SetSlot(IInventorySlot newSlot)
-    { 
-        Slot = newSlot;
-    }
+        [SerializeField] private UIInventoryItem _uiInventoryItem;
+        public IInventorySlot Slot { get; private set; }
 
-    public override void OnDrop(PointerEventData eventData)
-    {
-        var otherItemUI = eventData.pointerDrag.GetComponent<UIInventoryItem>();
-        var otherSlotUI = eventData.pointerDrag.GetComponentInParent<UIInventorySlot>();
-        var otherSlot = otherSlotUI.Slot;
-        var inventory = _uiInventory.Inventory;
+        private UIInventory _uiInventory;
 
-        inventory.TransitFromSlotToSlot(this, otherSlot, Slot);
-        Refresh();
-        otherSlotUI.Refresh();
-    }
+        private void Awake()
+        {
+            _uiInventory = GetComponentInParent<UIInventory>();
+        }
+        public void SetSlot(IInventorySlot newSlot)
+        {
+            Slot = newSlot;
+        }
 
-    public void Refresh()
-    {
-        if (Slot != null)
-            _uiInventoryItem.Refrash(Slot);
+        public override void OnDrop(PointerEventData eventData)
+        {
+            var otherItemUI = eventData.pointerDrag.GetComponent<UIInventoryItem>();
+            var otherSlotUI = eventData.pointerDrag.GetComponentInParent<UIInventorySlot>();
+            var otherSlot = otherSlotUI.Slot;
+            var inventory = _uiInventory.Inventory;
+
+            inventory.TransitFromSlotToSlot(this, otherSlot, Slot);
+            Refresh();
+            otherSlotUI.Refresh();
+        }
+
+        public void Refresh()
+        {
+            if (Slot != null)
+                _uiInventoryItem.Refrash(Slot);
+        }
     }
 }
