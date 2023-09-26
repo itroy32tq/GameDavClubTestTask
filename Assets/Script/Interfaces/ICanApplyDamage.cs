@@ -1,8 +1,8 @@
 
-namespace PoketZone
+namespace Assets.Script.Interfaces
 {
-    public interface ICanBeDamaged
+    public interface ICanApplyDamage
     {
-        void TakeDamage(int damage);
+        void ApplyDamage(ICanBeDamaged canBeDamaged);
     }
 }

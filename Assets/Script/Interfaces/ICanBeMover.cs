@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace PoketZone
+namespace Assets.Script.Interfaces
 {
     public interface ICanBeMover
     {

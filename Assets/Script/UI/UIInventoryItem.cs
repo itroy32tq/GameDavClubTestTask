@@ -1,3 +1,4 @@
+using Assets.Script.Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
 

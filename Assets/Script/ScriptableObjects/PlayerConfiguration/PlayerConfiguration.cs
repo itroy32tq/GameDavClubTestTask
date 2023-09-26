@@ -44,7 +44,7 @@ public struct BaseInventoryData
     /// Здоровье, сколько урона выдержит персонаж
     /// </summary>
     [Tooltip("описание предмета")]
-    public InventoryItemInfo itemInfo;
+    public ItemInfo itemInfo;
     [Tooltip("его количество")]
     public int count;
 

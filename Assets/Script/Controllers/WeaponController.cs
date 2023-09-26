@@ -1,8 +1,6 @@
 using Assets.Script.Weapons;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Assets.Script.Interfaces;
 
 namespace PoketZone
 {
@@ -10,7 +8,7 @@ namespace PoketZone
     {
         [SerializeField] UIInventory _uiInventory;
         private int _bulletsCount;
-        private InventoryItemInfo _bulletItem;
+        private ItemInfo _bulletItem;
         private WeaponInfo _weapon;
         public WeaponInfo Weapon { get => _weapon;}
 

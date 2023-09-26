@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Script.Interfaces
 {
@@ -11,6 +6,6 @@ namespace Assets.Script.Interfaces
     {
         float ShootInterval { get;  }
         GameObject BulletPref { get; }
-        InventoryItemInfo BulletItem { get; }
+        string BulletItemId { get; }
     }
 }

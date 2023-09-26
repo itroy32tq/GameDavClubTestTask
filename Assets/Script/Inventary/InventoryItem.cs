@@ -1,23 +1,24 @@
+using Assets.Script.Interfaces;
 using System;
 
-public class InventoryItem : IInventoryItem
+namespace Script.Inventoty
 {
-    public IInventoryItemInfo Info { get; }
-
-    public IInventoryItemState State { get; }
-
-    public Type Type => GetType();
-
-    public IInventoryItem Clone()
+    public class InventoryItem : IInventoryItem
     {
-        var clonedItem = new InventoryItem(Info);
-        clonedItem.State.Amount = State.Amount;
-        return clonedItem;
-    }
-
-    public InventoryItem(IInventoryItemInfo info)
-    {
-        Info = info;
-        State = new InventoryItemState();
+        public IItemInfo Info { get; }
+        public IInventoryItemState State { get; }
+        public Type Type => GetType();
+        public IInventoryItem Clone()
+        {
+            var clonedItem = new InventoryItem(Info);
+            clonedItem.State.Amount = State.Amount;
+            return clonedItem;
+        }
+        public InventoryItem(IItemInfo info)
+        {
+            Info = info;
+            State = new InventoryItemState();
+        }
     }
 }
+
