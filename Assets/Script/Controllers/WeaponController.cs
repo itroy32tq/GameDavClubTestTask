@@ -41,7 +41,7 @@ namespace PoketZone
             if (currentTime - _lastShootTime > _weapon.ShootInterval)
             {
                 var bulletPref = _weapon.BulletPref;
-                var bullet = Instantiate(bulletPref, shootPoint, Quaternion.identity).GetComponent<Bullet>();
+                var bullet = Instantiate(bulletPref, shootPoint, Quaternion.identity).GetComponent<BulletController>();
 
                 bullet.Direction = direction;
                 _lastShootTime = currentTime;

@@ -13,7 +13,7 @@ namespace PoketZone
 
         private int _currentHealth;
 
-        public event Action<int, int> OnUnitHealtChanged;
+        public event Action<int, int> OnUnitHealtChangedEvent;
 
         public int Health { get => _currentHealth; protected set => _currentHealth = value; }
 
@@ -30,7 +30,7 @@ namespace PoketZone
         public void TakeDamage(int damage)
         {
             _currentHealth -= damage;
-            OnUnitHealtChanged?.Invoke(_currentHealth, _health);
+            OnUnitHealtChangedEvent?.Invoke(_currentHealth, _health);
             if (Health <= 0) Destroy(gameObject);
         }
             

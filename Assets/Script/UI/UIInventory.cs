@@ -1,4 +1,4 @@
-using Assets.Script.Interfaces;
+using Assets.Script.ScriptableObjects;
 using Script.Inventoty;
 using System.Collections.Generic;
 using UnityEngine;
@@ -54,8 +54,8 @@ namespace Script.UI
         {
             foreach (var part in data)
             {
-                var item = new InventoryItem(part.itemInfo);
-                item.State.Amount = part.count;
+                var item = new InventoryItem(part.ItemInfo);
+                item.State.Amount = part.Count;
                 if (!InventoryModel.TryToAdd(this, item))
                     Debug.Log("не удалось добавить предметы из конфигурации в инвентарь");
             }

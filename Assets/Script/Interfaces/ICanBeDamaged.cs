@@ -7,6 +7,6 @@ namespace Assets.Script.Interfaces
     {
         void TakeDamage(int damage);
 
-        public event Action<int, int> OnUnitHealtChanged;
+        event Action<int, int> OnUnitHealtChangedEvent;
     }
 }

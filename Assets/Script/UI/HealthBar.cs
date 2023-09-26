@@ -12,7 +12,7 @@ namespace Assets.Script.UI
 
         private void OnEnable()
         {
-            _canBeDamaged.OnUnitHealtChanged += OnValueChanged;
+            _canBeDamaged.OnUnitHealtChangedEvent += OnValueChanged;
             _slider.value = 1;
         }
         public void OnValueChanged(int value, int maxValue)
@@ -21,7 +21,7 @@ namespace Assets.Script.UI
         }
         private void OnDisable() 
         {
-            _canBeDamaged.OnUnitHealtChanged -= OnValueChanged;
+            _canBeDamaged.OnUnitHealtChangedEvent -= OnValueChanged;
         }
     }
 }

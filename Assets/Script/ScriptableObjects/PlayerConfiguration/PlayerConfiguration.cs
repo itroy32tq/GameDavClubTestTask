@@ -1,5 +1,5 @@
+using Assets.Script.ScriptableObjects;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -35,15 +35,3 @@ public struct BaseParamsData
 
 }
 
-[Serializable]
-public struct FilingInventoryData
-{
-    /// <summary>
-    /// Здоровье, сколько урона выдержит персонаж
-    /// </summary>
-    [Tooltip("описание предмета")]
-    public ItemInfo itemInfo;
-    [Tooltip("его количество")]
-    public int count;
-
-}

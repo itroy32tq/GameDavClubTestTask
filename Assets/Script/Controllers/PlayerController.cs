@@ -1,13 +1,15 @@
 using Assets.Script.Interfaces;
+using Assets.Script.ScriptableObjects;
 using Assets.Script.Weapons;
 using Script.UI;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace PoketZone
 {
-    public class PlayerController : Unit
+    public class PlayerController : Unit, ICanTakeItems
     {
         [SerializeField] private WeaponController weaponController;
         [SerializeField] private Transform _shootPoint;
@@ -21,6 +23,7 @@ namespace PoketZone
 
         private Vector2 _shootDerection = Vector2.right;
 
+        public event Action<object, IItemOnMap> OnTakeItemOnMapEvent;
         
 
         protected override void Start()
@@ -61,5 +64,10 @@ namespace PoketZone
             return _shootDerection;
         }
 
+        public void TakeItems(IItemOnMap item)
+        {
+            var data = new FilingInventoryData((ItemInfo)item, item.CountOnMap);
+            _playerInventory.FillSlots(new List<FilingInventoryData>(){data});
+        }
     }
 }

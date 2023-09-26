@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace PoketZone
 {
-    public class Bullet : MonoBehaviour, ICanApplyDamage
+    public class BulletController : MonoBehaviour, ICanApplyDamage
     {
         [SerializeField, Range(1f, 6f)] private int _damage;
         [SerializeField, Range(1f, 10f)] private float _speed;
