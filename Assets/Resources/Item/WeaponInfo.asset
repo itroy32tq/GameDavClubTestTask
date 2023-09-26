@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: fb49edf75e6453a4eac3985bc0974a8f, type: 3}
   m_Name: WeaponInfo
-  m_EditorClassIdentifier: Assembly-CSharp:Assets.Script.Weapons:WeaponInfo
-  _id: 
-  _title: 
+  m_EditorClassIdentifier: 
+  _id: assault_rifle
+  _title: Assault Rifle
   _description: 
-  _maxItemsInInventarySlot: 0
-  _icon: {fileID: 0}
-  _shootInterval: 0
-  _bulletPref: {fileID: 0}
-  _bulletItem: {fileID: 0}
+  _maxItemsInInventarySlot: 1
+  _icon: {fileID: 21300000, guid: 6532bc2c52f179142a7333cc0f5faeda, type: 3}
+  _shootInterval: 1
+  _bulletPref: {fileID: 5824361563609614306, guid: 872ee8f815f1b0a4482bc6c54fc06d90, type: 3}
+  _bulletItemId: cartridge_5_45

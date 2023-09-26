@@ -9,36 +9,34 @@ public class PlayerConfiguration : ScriptableObject
     [SerializeField, Header("Базовые параметры персонажа")] private BaseParamsData _baseParams = BaseParamsData.Empty;
     public BaseParamsData GetBaseParams => _baseParams;
 
-    [SerializeField, Header("Начальный инвентарь персонажа")] private List<BaseInventoryData> _baseItems;
-    public List<BaseInventoryData> GetBaseInventoryItems => _baseItems;
+    [SerializeField, Header("Начальный инвентарь персонажа")] private List<FilingInventoryData> _baseItems;
+    public List<FilingInventoryData> GetBaseInventoryItems => _baseItems;
 
 }
 
 [Serializable]
 public struct BaseParamsData
 {
-    /// <summary>
-    /// Здоровье, сколько урона выдержит персонаж
-    /// </summary>
     [Tooltip("Здоровье, сколько урона выдержит персонаж")]
     public float MaxHealth;
 
-    /// <summary>
-    /// Скорость перемещения
-    /// </summary>
     [Tooltip("Скорость перемещения")]
     public float MoveSpeed;
+
+    [Tooltip("Емкость Инвентаря")]
+    public int InventoryCapacity;
 
     public static BaseParamsData Empty => new BaseParamsData()
     {
         MaxHealth = 10f,
-        MoveSpeed = 1f
+        MoveSpeed = 1f,
+        InventoryCapacity = 5
     };
 
 }
 
 [Serializable]
-public struct BaseInventoryData
+public struct FilingInventoryData
 {
     /// <summary>
     /// Здоровье, сколько урона выдержит персонаж

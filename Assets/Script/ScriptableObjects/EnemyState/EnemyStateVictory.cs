@@ -1,7 +1,5 @@
-using PoketZone;
-using UnityEngine;
 
-[CreateAssetMenu(fileName = "EnemyStateVictory", menuName = "Configurations/EnemyStateVictory")]
+
 public class EnemyStateVictory : EnemyState
 {
     public override void Enter()

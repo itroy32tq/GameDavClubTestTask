@@ -1,16 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class UISlot : MonoBehaviour, IDropHandler
+namespace Script.UI
 {
-    public virtual void OnDrop(PointerEventData eventData)
+    public class UISlot : MonoBehaviour, IDropHandler
     {
-        var otherItemTransform = eventData.pointerDrag.transform;
-        otherItemTransform.SetParent(transform);
-        otherItemTransform.localPosition = Vector3.zero;
+        public virtual void OnDrop(PointerEventData eventData)
+        {
+            var otherItemTransform = eventData.pointerDrag.transform;
+            otherItemTransform.SetParent(transform);
+            otherItemTransform.localPosition = Vector3.zero;
+        }
     }
-
-    
 }

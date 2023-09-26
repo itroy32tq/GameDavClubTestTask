@@ -2,7 +2,6 @@ using PoketZone;
 using System;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "EnemyStateAttack", menuName = "Configurations/EnemyStateAttack")]
 public class EnemyStateAttack : EnemyState
 {
     [SerializeField, Range(5f, 15f)] private float _attackDistance;

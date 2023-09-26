@@ -1,7 +1,6 @@
 using PoketZone;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "EnemyStateSeek", menuName = "Configurations/EnemyStateSeek")]
 public class EnemyStateSeek : EnemyState
 {
     [SerializeField, Range(5f, 15f)] private float _attackDistance;
@@ -20,7 +19,6 @@ public class EnemyStateSeek : EnemyState
             NeedTransition = true;
             TargetState = AvailableTransitions[0];
         } 
-        
     }
     public override void Exit()
     {

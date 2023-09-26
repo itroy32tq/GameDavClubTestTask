@@ -2,8 +2,6 @@ using PoketZone;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-[CreateAssetMenu(fileName = "EnemyStateIdle", menuName = "Configurations/EnemyStateIdle")]
 public class EnemyStateIdle : EnemyState
 {
     [SerializeField, Range(10f, 15f)] float visibilityDistance;

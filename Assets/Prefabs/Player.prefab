@@ -261,19 +261,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 7594964367609073159}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1f72deb9929eb147acd5e780d7e6f20, type: 3}
+  m_Script: {fileID: 11500000, guid: 2dae548e549e9a84ab46b55285586408, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 2
-  _health: 10
+  _speed: 1
+  _health: 0
   _rigidbody: {fileID: 5769265705139930844}
   weaponController: {fileID: 3926782332400683277}
   _shootPoint: {fileID: 2713401738440600368}
   _joystick: {fileID: 0}
   _shootButton: {fileID: 0}
-  Inventory: {fileID: 0}
+  _playerInventory: {fileID: 0}
   _weaponSpriteRenderer: {fileID: 212161049609493270}
+  _playerSpriteRenderer: {fileID: 6387193506746340610}
   _defaultWeaponInfo: {fileID: 11400000, guid: bee96225da9ccea4d9a1430be900ce07, type: 2}
+  _playerConfiguration: {fileID: 11400000, guid: 3ea9aa6ee91745848992753ced0b8453, type: 2}
 --- !u!114 &3926782332400683277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -286,3 +288,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca904378eb578124e8d33fd1b93fcd3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _uiInventory: {fileID: 0}

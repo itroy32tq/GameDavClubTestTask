@@ -22,10 +22,9 @@ namespace Script.UI
 
         public override void OnDrop(PointerEventData eventData)
         {
-            var otherItemUI = eventData.pointerDrag.GetComponent<UIInventoryItem>();
             var otherSlotUI = eventData.pointerDrag.GetComponentInParent<UIInventorySlot>();
             var otherSlot = otherSlotUI.Slot;
-            var inventory = _uiInventory.Inventory;
+            var inventory = _uiInventory.InventoryModel;
 
             inventory.TransitFromSlotToSlot(this, otherSlot, Slot);
             Refresh();

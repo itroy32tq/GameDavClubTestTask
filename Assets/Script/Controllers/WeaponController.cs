@@ -1,6 +1,7 @@
 using Assets.Script.Weapons;
 using UnityEngine;
 using Assets.Script.Interfaces;
+using Script.UI;
 
 namespace PoketZone
 {
@@ -8,7 +9,7 @@ namespace PoketZone
     {
         [SerializeField] UIInventory _uiInventory;
         private int _bulletsCount;
-        private ItemInfo _bulletItem;
+        private string _bulletItemId;
         private WeaponInfo _weapon;
         public WeaponInfo Weapon { get => _weapon;}
 
@@ -17,13 +18,13 @@ namespace PoketZone
         public void ConfigureWeapon(WeaponInfo weapon)
         { 
             _weapon = weapon;
-            _uiInventory.Inventory.OnInventoryItemAddedEvent += OnInventoryItemAdded;
-            _bulletItem = _weapon.BulletItem;
+            _uiInventory.InventoryModel.OnInventoryItemAddedEvent += OnInventoryItemAdded;
+            _bulletItemId = _weapon.BulletItemId;
         }
 
         private void OnInventoryItemAdded(object sender, IInventoryItem item, int amount)
         {
-            if (item.Info.Id != _weapon.BulletItem.Id) return;
+            if (item.Info.Id != _bulletItemId) return;
             _bulletsCount += amount;
         }
 
@@ -44,7 +45,7 @@ namespace PoketZone
 
                 bullet.Direction = direction;
                 _lastShootTime = currentTime;
-                _uiInventory.Inventory.Remove(this, _bulletItem.Id);
+                _uiInventory.InventoryModel.Remove(this, _bulletItemId);
             }
         }
 

@@ -3,7 +3,6 @@ using Script.Inventoty;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
 
 namespace Script.UI
 {
@@ -29,20 +28,21 @@ namespace Script.UI
         {
             for (int i = 0; i < capacity; i++)
             {
-                var slotOnject = Instantiate(_uiSlot, _grid);
-                _uiSlotList.Add(slotOnject.GetComponent<UIInventorySlot>());
-                var uiItem = slotOnject.GetComponentInChildren<UIItem>();
-                uiItem.OnUIItemRemoveButtonClickEvent += OnUIItemRemoveButtonClick;
+                var slotPref = Instantiate(_uiSlot, _grid);
+                _uiSlotList.Add(slotPref.GetComponent<UIInventorySlot>());
+                var uiItem = slotPref.GetComponentInChildren<UIItem>();
                 _uiItemList.Add(uiItem);
+                uiItem.OnUIItemRemoveButtonClickEvent += OnUIItemRemoveButtonClick;
+                
             }
-            InventoryModel = new InventoryWithSlots(_uiSlotList.Count);
+            InventoryModel = new InventoryWithSlots(capacity);
             _updater = new InventoryStateUpdater(_uiSlotList);
             InventoryModel.OnInventoryStateChangedEvent += _updater.OnInventoryStateChanged;
             _grid.gameObject.SetActive(false);
         }
         private void OnUIItemRemoveButtonClick(object sender, UIItem uiitem)
         {
-            InventoryModel.Remove(sender, ((UIInventoryItem)uiitem).Item.Info.Id);
+            InventoryModel.Remove(sender, ((UIInventoryItem)uiitem).ItemId);
         }
         private void OnShowInventaryButtonClick()
         {
@@ -50,28 +50,20 @@ namespace Script.UI
                 _grid.gameObject.SetActive(true);
             else _grid.gameObject.SetActive(false);
         }
-        /// <summary>
-        /// переносим предметы и их количество из конфигурации в инвентарь
-        /// </summary>
-        public void FillSlots(List<BaseInventoryData> baseItems)
+        public void FillSlots(List<FilingInventoryData> data)
         {
-            foreach (var baseItem in baseItems)
+            foreach (var part in data)
             {
-                var item = new InventoryItem(baseItem.itemInfo);
-                item.State.Amount = baseItem.count;
+                var item = new InventoryItem(part.itemInfo);
+                item.State.Amount = part.count;
                 if (!InventoryModel.TryToAdd(this, item))
                     Debug.Log("не удалось добавить предметы из конфигурации в инвентарь");
             }
             SetupInventoryUI(InventoryModel);
         }
-        /// <summary>
-        /// удаляем элемент по клику на кнопку из инвентаря
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="uiitem"></param>
         private void SetupInventoryUI(InventoryWithSlots inventory)
         {
-            var allSlots = InventoryModel.GetAllSlots();
+            var allSlots = inventory.GetAllSlots();
             var allSlotsCount = allSlots.Length;
             for (int i = 0; i < allSlotsCount; i++)
             {

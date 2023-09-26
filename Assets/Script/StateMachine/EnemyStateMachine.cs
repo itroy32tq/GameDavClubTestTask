@@ -8,13 +8,11 @@ namespace PoketZone
     public class EnemyStateMachine : StateMachine
     {
         private Enemy _enemy;
-
         public EnemyStateMachine(Enemy enemy)
         { 
             _enemy = enemy;
             Initialize();
         }
-
         public override void Initialize()
         {
             StateMap = new();
@@ -28,7 +26,6 @@ namespace PoketZone
             }
             SetDefaultState();
         }
-
         private void SetDefaultState()
         {
             SetCurrentState(GetStateByType<EnemyStateIdle>());

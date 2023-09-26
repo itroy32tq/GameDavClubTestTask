@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+using Assets.Script.Interfaces;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace PoketZone
 {

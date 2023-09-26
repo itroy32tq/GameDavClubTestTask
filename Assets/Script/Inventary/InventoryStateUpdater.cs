@@ -1,5 +1,5 @@
+using Script.UI;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace Script.Inventoty
 {

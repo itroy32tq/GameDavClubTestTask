@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Script.Interfaces;
+using UnityEngine;
 
 namespace PoketZone
 {
