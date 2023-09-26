@@ -1,4 +1,5 @@
 using Assets.Script.Interfaces;
+using System;
 using UnityEngine;
 
 namespace PoketZone
@@ -11,11 +12,15 @@ namespace PoketZone
         [SerializeField] private Rigidbody2D _rigidbody;
 
         private int _currentHealth;
+
+        public event Action<int, int> OnUnitHealtChanged;
+
         public int Health { get => _currentHealth; protected set => _currentHealth = value; }
 
         protected Rigidbody2D RigidBody => _rigidbody;
         protected float Speed => _speed;
         protected Vector2 Faceing { get; set; } = Vector2.right;
+
 
         protected virtual void Start()
         {
@@ -24,8 +29,8 @@ namespace PoketZone
 
         public void TakeDamage(int damage)
         {
-            Health -= damage;
-
+            _currentHealth -= damage;
+            OnUnitHealtChanged?.Invoke(_currentHealth, _health);
             if (Health <= 0) Destroy(gameObject);
         }
             

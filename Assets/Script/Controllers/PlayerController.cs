@@ -1,5 +1,7 @@
+using Assets.Script.Interfaces;
 using Assets.Script.Weapons;
 using Script.UI;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,6 +20,8 @@ namespace PoketZone
         [SerializeField] private PlayerConfiguration _playerConfiguration;
 
         private Vector2 _shootDerection = Vector2.right;
+
+        
 
         protected override void Start()
         {
