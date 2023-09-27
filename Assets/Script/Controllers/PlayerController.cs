@@ -1,5 +1,6 @@
 using Assets.Script.Interfaces;
-using Assets.Script.ScriptableObjects;
+using Assets.Script.Configurations;
+using Assets.Script.Structs;
 using Assets.Script.Weapons;
 using Script.UI;
 using System;
@@ -9,7 +10,7 @@ using UnityEngine.UI;
 
 namespace PoketZone
 {
-    public class PlayerController : Unit, ICanTakeItems
+    public class PlayerController : Unit, ICanTakeItem
     {
         [SerializeField] private WeaponController weaponController;
         [SerializeField] private Transform _shootPoint;
@@ -22,32 +23,24 @@ namespace PoketZone
         [SerializeField] private PlayerConfiguration _playerConfiguration;
 
         private Vector2 _shootDerection = Vector2.right;
-
         public event Action<object, IItemOnMap> OnTakeItemOnMapEvent;
-        
-
         protected override void Start()
         {
             //todo
             base.Start();
             _shootButton.onClick.AddListener(OnShootButtonClick);
-            _playerInventory.InitUIInventory(_playerConfiguration.GetBaseParams.InventoryCapacity);
+            _playerInventory.InitUIInventory(_playerConfiguration.GetBaseParams.InventoryCapacity, transform);
             SetCurentWeapon(_defaultWeaponInfo);
-            _playerInventory.FillSlots(_playerConfiguration.GetBaseInventoryItems);
-            
+            _playerInventory.FillSlots(_playerConfiguration.BaseInventoryItems);
         }
-
         private void OnShootButtonClick()
         {
             //из условия не понятно надо ли делать самонаводящуюся стрельбу
             weaponController.Shoot(_shootPoint.position, GetShootDirection());
         }
-
         private void Update() 
         {
-
             MakeMove(_joystick.Direction);
-
         }
         private void SetCurentWeapon(WeaponInfo weapon)
         {
@@ -64,7 +57,7 @@ namespace PoketZone
             return _shootDerection;
         }
 
-        public void TakeItems(IItemOnMap item)
+        public void TakeItem(IItemOnMap item)
         {
             var data = new FilingInventoryData((ItemInfo)item, item.CountOnMap);
             _playerInventory.FillSlots(new List<FilingInventoryData>(){data});

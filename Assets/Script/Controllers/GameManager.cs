@@ -1,4 +1,4 @@
-using Assets.Script.ScriptableObjects;
+using Assets.Script.Configurations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

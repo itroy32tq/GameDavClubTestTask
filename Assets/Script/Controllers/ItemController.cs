@@ -6,23 +6,32 @@ namespace PoketZone
 { 
     public class ItemController: MonoBehaviour
     {
-        [SerializeField] private SpriteRenderer _spriteRenderer;
         [SerializeField] private ItemOnMapInfo _itemOnMap;
+        [SerializeField] private SpriteRenderer _spriteRenderer;
         [SerializeField] private BoxCollider2D _boxCollider;
+        public ItemOnMapInfo ItemOnMap { get => _itemOnMap; set => _itemOnMap = value; }
 
         private void Awake()
         {
-            _spriteRenderer.sprite = _itemOnMap.SpriteIcon;
-            //ещвщ пока не будем замарачиваться с правильным скейлом
-            transform.localScale = Vector3.one * _itemOnMap.Scale;
-            _boxCollider.size = _spriteRenderer.size;
+            if (_itemOnMap != null)
+            {
+                _spriteRenderer.sprite = _itemOnMap.SpriteIcon;
+                //пока не будем замарачиваться с правильным скейлом
+                transform.localScale = Vector3.one * _itemOnMap.Scale;
+                _boxCollider.size = _spriteRenderer.size;
+            }
+        }
+        public void Init(ItemOnMapInfo itemOnMap)
+        {
+            _itemOnMap = itemOnMap;
+            Awake();
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.gameObject.TryGetComponent(out ICanTakeItems canTakeItems))
+            if (collision.gameObject.TryGetComponent(out ICanTakeItem canTakeItem))
             {
-                canTakeItems.TakeItems(_itemOnMap);
+                canTakeItem.TakeItem(_itemOnMap);
                 Destroy(gameObject);
             }
         }

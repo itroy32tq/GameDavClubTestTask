@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Assets.Script.Interfaces
 {
-    public interface ICanTakeItems
+    public interface ICanTakeItem
     {
-        void TakeItems(IItemOnMap item);
+        void TakeItem(IItemOnMap item);
 
         event Action<object, IItemOnMap> OnTakeItemOnMapEvent;
     }

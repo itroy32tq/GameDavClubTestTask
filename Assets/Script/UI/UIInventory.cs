@@ -1,4 +1,7 @@
-using Assets.Script.ScriptableObjects;
+using Assets.Script.Configurations;
+using Assets.Script.Item;
+using Assets.Script.Structs;
+using PoketZone;
 using Script.Inventoty;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,21 +14,22 @@ namespace Script.UI
         [SerializeField] private GameObject _uiSlot;
         [SerializeField] private Transform _grid;
         [SerializeField] private Button _showInventoryButton;
+        [SerializeField] private GameObject _itenOnMapPrefab;
 
         private List<UIInventorySlot> _uiSlotList = new List<UIInventorySlot>();
         private List<UIItem> _uiItemList = new List<UIItem>();
-
         private InventoryStateUpdater _updater;
+        private Transform _playerTransform;
         public InventoryStateUpdater InventoryUpdater => _updater;
         public InventoryWithSlots InventoryModel { get; private set; }
 
         private void Start()
         {
             _showInventoryButton.onClick.AddListener(OnShowInventaryButtonClick);
-
         }
-        public void InitUIInventory(int capacity)
+        public void InitUIInventory(int capacity, Transform playerTransform)
         {
+            _playerTransform = playerTransform;
             for (int i = 0; i < capacity; i++)
             {
                 var slotPref = Instantiate(_uiSlot, _grid);
@@ -43,6 +47,9 @@ namespace Script.UI
         private void OnUIItemRemoveButtonClick(object sender, UIItem uiitem)
         {
             InventoryModel.Remove(sender, ((UIInventoryItem)uiitem).ItemId);
+            var itemOnMap = Instantiate(_itenOnMapPrefab, (_playerTransform.position - new Vector3(-5, 0, 0)), Quaternion.identity).GetComponent<ItemController>();
+            //itemOnMap.Init((ItemOnMapInfo)uiitem.It);
+
         }
         private void OnShowInventaryButtonClick()
         {
