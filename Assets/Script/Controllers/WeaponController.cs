@@ -48,6 +48,5 @@ namespace PoketZone
                 _uiInventory.InventoryModel.Remove(this, _bulletItemId);
             }
         }
-
     }
 }

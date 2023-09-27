@@ -6,7 +6,6 @@ namespace PoketZone
 { 
     public class ItemController: MonoBehaviour
     {
-       
         [SerializeField] private SpriteRenderer _spriteRenderer;
         [SerializeField] private ItemOnMapInfo _itemOnMap;
         [SerializeField] private BoxCollider2D _boxCollider;

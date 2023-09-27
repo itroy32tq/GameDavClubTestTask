@@ -7,7 +7,6 @@ namespace PoketZone
 {
     public class GameManager : MonoBehaviour 
     {
-
         [SerializeField] private List<GameManagerConfig> _configs;
         [SerializeField] private PlayerController _player;
         private GameManagerConfig _currentConfig;

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace PoketZone
+namespace Script.StateMachine
 {
     public abstract class StateMachine
     {

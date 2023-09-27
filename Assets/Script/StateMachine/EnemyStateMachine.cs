@@ -1,9 +1,7 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using PoketZone;
 using UnityEngine;
 
-namespace PoketZone
+namespace Script.StateMachine
 {
     public class EnemyStateMachine : StateMachine
     {
