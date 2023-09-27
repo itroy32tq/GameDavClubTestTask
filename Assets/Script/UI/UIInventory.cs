@@ -19,7 +19,6 @@ namespace Script.UI
         private List<UIInventorySlot> _uiSlotList = new List<UIInventorySlot>();
         private List<UIItem> _uiItemList = new List<UIItem>();
         private InventoryStateUpdater _updater;
-        private Transform _playerTransform;
         public InventoryStateUpdater InventoryUpdater => _updater;
         public InventoryWithSlots InventoryModel { get; private set; }
 
@@ -27,9 +26,8 @@ namespace Script.UI
         {
             _showInventoryButton.onClick.AddListener(OnShowInventaryButtonClick);
         }
-        public void InitUIInventory(int capacity, Transform playerTransform)
+        public void InitUIInventory(int capacity)
         {
-            _playerTransform = playerTransform;
             for (int i = 0; i < capacity; i++)
             {
                 var slotPref = Instantiate(_uiSlot, _grid);
@@ -47,7 +45,7 @@ namespace Script.UI
         private void OnUIItemRemoveButtonClick(object sender, UIItem uiitem)
         {
             InventoryModel.Remove(sender, ((UIInventoryItem)uiitem).ItemId);
-            var itemOnMap = Instantiate(_itenOnMapPrefab, (_playerTransform.position - new Vector3(-5, 0, 0)), Quaternion.identity).GetComponent<ItemController>();
+            //var itemOnMap = Instantiate(_itenOnMapPrefab, (_playerTransform.position - new Vector3(-5, 0, 0)), Quaternion.identity).GetComponent<ItemController>();
             //itemOnMap.Init((ItemOnMapInfo)uiitem.It);
 
         }

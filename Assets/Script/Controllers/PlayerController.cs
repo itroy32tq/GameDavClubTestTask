@@ -29,7 +29,7 @@ namespace PoketZone
             //todo
             base.Start();
             _shootButton.onClick.AddListener(OnShootButtonClick);
-            _playerInventory.InitUIInventory(_playerConfiguration.GetBaseParams.InventoryCapacity, transform);
+            _playerInventory.InitUIInventory(_playerConfiguration.GetBaseParams.InventoryCapacity);
             SetCurentWeapon(_defaultWeaponInfo);
             _playerInventory.FillSlots(_playerConfiguration.BaseInventoryItems);
         }
