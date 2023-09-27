@@ -1,12 +1,11 @@
-using Assets.Script.Interfaces;
-using Assets.Script.Configurations;
-using Assets.Script.Structs;
-using Assets.Script.Weapons;
 using Script.UI;
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Script.Inventoty;
+using Script.ItemSpace;
+using Script.Interfaces;
+using Script.Configurations;
 
 namespace PoketZone
 {
@@ -19,11 +18,13 @@ namespace PoketZone
         [SerializeField] private UIInventory _playerInventory;
         [SerializeField] private SpriteRenderer _weaponSpriteRenderer;
         [SerializeField] private SpriteRenderer _playerSpriteRenderer;
-        [SerializeField] private WeaponInfo _defaultWeaponInfo;
+        [SerializeField] private ItemInfo _defaultWeaponInfo;
         [SerializeField] private PlayerConfiguration _playerConfiguration;
 
+        public InventoryWithSlots InventoryModel => _playerInventory.InventoryModel;
+
         private Vector2 _shootDerection = Vector2.right;
-        public event Action<object, IItemOnMap> OnTakeItemOnMapEvent;
+        public event Action<object, Item> OnTakeItemOnMapEvent;
         protected override void Start()
         {
             //todo
@@ -42,7 +43,7 @@ namespace PoketZone
         {
             MakeMove(_joystick.Direction);
         }
-        private void SetCurentWeapon(WeaponInfo weapon)
+        private void SetCurentWeapon(ItemInfo weapon)
         {
             weaponController.ConfigureWeapon(weapon);
             _weaponSpriteRenderer.sprite = weaponController.Weapon.SpriteIcon;
@@ -57,10 +58,10 @@ namespace PoketZone
             return _shootDerection;
         }
 
-        public void TakeItem(IItemOnMap item)
+        public void TakeItem(Item item)
         {
-            var data = new FilingInventoryData((ItemInfo)item, item.CountOnMap);
-            _playerInventory.FillSlots(new List<FilingInventoryData>(){data});
+            //var data = new ItemsData((item.Info, item.CountOnMap);
+            //_playerInventory.FillSlots(new List<ItemsData>(){data});
         }
     }
 }

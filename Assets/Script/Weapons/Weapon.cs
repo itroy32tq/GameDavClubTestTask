@@ -1,16 +1,11 @@
-﻿using Assets.Script.Interfaces;
-using Assets.Script.Weapons;
+﻿using Script.ItemSpace;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Assets.Script
 {
     public class Weapon
     {
-        IWeaponInfo WeaponInfo { get; }
+        Item WeaponInfo { get; }
         Type Type => GetType();
 
         public void LoadWeapon() 
@@ -18,7 +13,7 @@ namespace Assets.Script
             
         }
 
-        public Weapon(WeaponInfo weaponInfo)
+        public Weapon(Item weaponInfo)
         {
             WeaponInfo = weaponInfo;
         }

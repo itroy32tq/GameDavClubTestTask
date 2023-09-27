@@ -1,5 +1,4 @@
-using Assets.Script.Configurations;
-using System.Collections;
+using Script.Configurations;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +8,7 @@ namespace PoketZone
     {
         [SerializeField] private List<GameManagerConfig> _configs;
         [SerializeField] private PlayerController _player;
+        [SerializeField] private GameObject _itenOnMapPrefab;
         private GameManagerConfig _currentConfig;
         private int _currentIndex = 0;
         private float _timeAfterLastSpawn;
@@ -20,11 +20,19 @@ namespace PoketZone
         {
             Instance = this;
         }
-
         private void Start () 
         {
+            _player.InventoryModel.OnInventoryItemRemoveEvent += OnCreateItemOnMap;
             SetStartConfig(_currentIndex);
         }
+
+        private void OnCreateItemOnMap(object sender, string id, int amount)
+        {
+            var itemController = Instantiate(_itenOnMapPrefab, (_player.transform.position - new Vector3(-5, 0, 0)), Quaternion.identity).GetComponent<ItemController>();
+            //itemController.Init();
+
+        }
+
         private void SetStartConfig(int index)
         { 
             _currentConfig = _configs[index];

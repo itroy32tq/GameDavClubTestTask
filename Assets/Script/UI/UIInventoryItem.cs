@@ -1,4 +1,5 @@
-using Assets.Script.Interfaces;
+using Script.Interfaces;
+using Script.ItemSpace;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +9,7 @@ namespace Script.UI
     {
         [SerializeField] private Image _imageIcon;
         [SerializeField] private Text _textAmount;
-        public IInventoryItem Item { get; private set; }
+        public Item Item { get; private set; }
         public string ItemId => Item.Info.Id;
         public void Refrash(IInventorySlot slot)
         {

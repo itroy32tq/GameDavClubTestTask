@@ -1,4 +1,5 @@
-using Assets.Script.Interfaces;
+using Script.Interfaces;
+using Script.ItemSpace;
 using System;
 
 namespace Script.Inventoty
@@ -7,7 +8,7 @@ namespace Script.Inventoty
     {
         public bool IsFull => !IsEmpty && Amount == Capacity;
         public bool IsEmpty => Item == null;
-        public IInventoryItem Item { get; private set; }
+        public Item Item { get; private set; }
         public Type ItemType => Item.Type;
         public int Amount => IsEmpty ? 0 : Item.State.Amount;
         public int Capacity { get; set; }
@@ -19,7 +20,7 @@ namespace Script.Inventoty
             Item.State.Amount = 0;
             Item = null;
         }
-        public void SetItem(IInventoryItem item)
+        public void SetItem(Item item)
         {
             if (!IsEmpty)
                 return;

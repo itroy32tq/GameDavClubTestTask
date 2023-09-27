@@ -1,5 +1,5 @@
 
-namespace Assets.Script.Interfaces
+namespace Script.Interfaces
 {
     public interface ICanApplyDamage
     {

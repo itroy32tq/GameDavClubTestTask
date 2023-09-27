@@ -1,4 +1,4 @@
-using Assets.Script.Interfaces;
+using Script.Interfaces;
 using UnityEngine;
 using UnityEngine.EventSystems;
 

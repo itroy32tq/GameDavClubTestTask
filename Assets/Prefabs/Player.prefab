@@ -265,8 +265,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dae548e549e9a84ab46b55285586408, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 1
-  _health: 0
+  _speed: 2
+  _health: 5
   _rigidbody: {fileID: 5769265705139930844}
   weaponController: {fileID: 3926782332400683277}
   _shootPoint: {fileID: 2713401738440600368}
@@ -275,7 +275,7 @@ MonoBehaviour:
   _playerInventory: {fileID: 0}
   _weaponSpriteRenderer: {fileID: 212161049609493270}
   _playerSpriteRenderer: {fileID: 6387193506746340610}
-  _defaultWeaponInfo: {fileID: 11400000, guid: bee96225da9ccea4d9a1430be900ce07, type: 2}
+  _defaultWeaponInfo: {fileID: 11400000, guid: 01355d58364f2834581c3bcb641e1f07, type: 2}
   _playerConfiguration: {fileID: 11400000, guid: 3ea9aa6ee91745848992753ced0b8453, type: 2}
 --- !u!114 &3926782332400683277
 MonoBehaviour:

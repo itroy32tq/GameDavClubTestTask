@@ -4470,11 +4470,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dae548e549e9a84ab46b55285586408, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!212 &1036067325 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 6387193506746340610, guid: 8d0781e3141df0549b48586e9b2d3f4d, type: 3}
-  m_PrefabInstance: {fileID: 1969938977}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1084559675
 GameObject:
   m_ObjectHideFlags: 0
@@ -5008,6 +5003,7 @@ MonoBehaviour:
   _configs:
   - {fileID: 11400000, guid: 8a1e5fa25329bcc439f1ba4b69e9e642, type: 2}
   _player: {fileID: 0}
+  _itenOnMapPrefab: {fileID: 0}
 --- !u!1001 &1969938977
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5060,18 +5056,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1019265848581476464, guid: 8d0781e3141df0549b48586e9b2d3f4d, type: 3}
-      propertyPath: _speed
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1019265848581476464, guid: 8d0781e3141df0549b48586e9b2d3f4d, type: 3}
-      propertyPath: _health
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1019265848581476464, guid: 8d0781e3141df0549b48586e9b2d3f4d, type: 3}
-      propertyPath: Inventory
-      value: 
-      objectReference: {fileID: 341420873}
-    - target: {fileID: 1019265848581476464, guid: 8d0781e3141df0549b48586e9b2d3f4d, type: 3}
       propertyPath: _joystick
       value: 
       objectReference: {fileID: 899636116}
@@ -5083,18 +5067,6 @@ PrefabInstance:
       propertyPath: _playerInventory
       value: 
       objectReference: {fileID: 341420873}
-    - target: {fileID: 1019265848581476464, guid: 8d0781e3141df0549b48586e9b2d3f4d, type: 3}
-      propertyPath: _playerConfiguration
-      value: 
-      objectReference: {fileID: 11400000, guid: 3ea9aa6ee91745848992753ced0b8453, type: 2}
-    - target: {fileID: 1019265848581476464, guid: 8d0781e3141df0549b48586e9b2d3f4d, type: 3}
-      propertyPath: _playerSpriteRenderer
-      value: 
-      objectReference: {fileID: 1036067325}
-    - target: {fileID: 3588577536568367603, guid: 8d0781e3141df0549b48586e9b2d3f4d, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3926782332400683277, guid: 8d0781e3141df0549b48586e9b2d3f4d, type: 3}
       propertyPath: _uiInventory
       value: 

@@ -1,29 +1,29 @@
-﻿using Assets.Script.Interfaces;
-using Assets.Script.Item;
+﻿using Script.Interfaces;
+using Script.ItemSpace;
 using UnityEngine;
 
 namespace PoketZone 
 { 
     public class ItemController: MonoBehaviour
     {
-        [SerializeField] private ItemOnMapInfo _itemOnMap;
+        [SerializeField] private Item _item;
         [SerializeField] private SpriteRenderer _spriteRenderer;
         [SerializeField] private BoxCollider2D _boxCollider;
-        public ItemOnMapInfo ItemOnMap { get => _itemOnMap; set => _itemOnMap = value; }
+        public Item ItemOnMap { get => _item; set => _item = value; }
 
         private void Awake()
         {
-            if (_itemOnMap != null)
+            if (_item != null)
             {
-                _spriteRenderer.sprite = _itemOnMap.SpriteIcon;
+                _spriteRenderer.sprite = _item.Info.SpriteIcon;
                 //пока не будем замарачиваться с правильным скейлом
-                transform.localScale = Vector3.one * _itemOnMap.Scale;
+                transform.localScale = Vector3.one * _item.Info.Scale;
                 _boxCollider.size = _spriteRenderer.size;
             }
         }
-        public void Init(ItemOnMapInfo itemOnMap)
+        public void Init(Item item)
         {
-            _itemOnMap = itemOnMap;
+            _item = item;
             Awake();
         }
 
@@ -31,7 +31,7 @@ namespace PoketZone
         {
             if (collision.gameObject.TryGetComponent(out ICanTakeItem canTakeItem))
             {
-                canTakeItem.TakeItem(_itemOnMap);
+                canTakeItem.TakeItem(_item);
                 Destroy(gameObject);
             }
         }

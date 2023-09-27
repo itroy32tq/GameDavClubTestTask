@@ -1,8 +1,6 @@
-using Assets.Script.Configurations;
-using Assets.Script.Item;
-using Assets.Script.Structs;
-using PoketZone;
 using Script.Inventoty;
+using Script.ItemSpace;
+using Script.Structs;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,7 +12,6 @@ namespace Script.UI
         [SerializeField] private GameObject _uiSlot;
         [SerializeField] private Transform _grid;
         [SerializeField] private Button _showInventoryButton;
-        [SerializeField] private GameObject _itenOnMapPrefab;
 
         private List<UIInventorySlot> _uiSlotList = new List<UIInventorySlot>();
         private List<UIItem> _uiItemList = new List<UIItem>();
@@ -45,9 +42,6 @@ namespace Script.UI
         private void OnUIItemRemoveButtonClick(object sender, UIItem uiitem)
         {
             InventoryModel.Remove(sender, ((UIInventoryItem)uiitem).ItemId);
-            //var itemOnMap = Instantiate(_itenOnMapPrefab, (_playerTransform.position - new Vector3(-5, 0, 0)), Quaternion.identity).GetComponent<ItemController>();
-            //itemOnMap.Init((ItemOnMapInfo)uiitem.It);
-
         }
         private void OnShowInventaryButtonClick()
         {
@@ -55,11 +49,11 @@ namespace Script.UI
                 _grid.gameObject.SetActive(true);
             else _grid.gameObject.SetActive(false);
         }
-        public void FillSlots(List<FilingInventoryData> data)
+        public void FillSlots(List<ItemsData> data)
         {
             foreach (var part in data)
             {
-                var item = new InventoryItem(part.ItemInfo);
+                var item = new Item(part.ItemInfo);
                 item.State.Amount = part.Count;
                 if (!InventoryModel.TryToAdd(this, item))
                     Debug.Log("не удалось добавить предметы из конфигурации в инвентарь");

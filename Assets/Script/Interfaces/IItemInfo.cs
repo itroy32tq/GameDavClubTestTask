@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Script.Interfaces
+namespace Script.Interfaces
 {
     public interface IItemInfo
     {
@@ -9,5 +9,9 @@ namespace Assets.Script.Interfaces
         string Description { get; }
         int MaxItemsInInventarySlot { get; }
         Sprite SpriteIcon { get; }
+        public float Scale { get;  }
+        float ShootInterval { get; }
+        GameObject BulletPref { get; }
+        string BulletItemId { get; }
     }
 }

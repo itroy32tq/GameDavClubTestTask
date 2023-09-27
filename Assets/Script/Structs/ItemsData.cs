@@ -1,16 +1,17 @@
-﻿using System;
+﻿using Script.ItemSpace;
+using System;
 using UnityEngine;
 
-namespace Assets.Script.Structs
+namespace Script.Structs
 {
     [Serializable]
-    public struct FilingInventoryData
+    public struct ItemsData
     {
         [Tooltip("описание предмета")]
         public ItemInfo ItemInfo;
         [Tooltip("его количество")]
         public int Count;
-        public FilingInventoryData(ItemInfo itemInfo, int count)
+        public ItemsData(ItemInfo itemInfo, int count)
         {
             ItemInfo = itemInfo; Count = count;
         }

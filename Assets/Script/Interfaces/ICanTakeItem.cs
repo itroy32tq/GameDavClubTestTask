@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Script.ItemSpace;
 
-namespace Assets.Script.Interfaces
+namespace Script.Interfaces
 {
     public interface ICanTakeItem
     {
-        void TakeItem(IItemOnMap item);
+        void TakeItem(Item item);
 
-        event Action<object, IItemOnMap> OnTakeItemOnMapEvent;
+        //event Action<object, It> OnTakeItemOnMapEvent;
     }
 }

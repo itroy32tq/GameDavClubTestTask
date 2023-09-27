@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Assets.Script.Structs
+namespace Script.Structs
 {
     [Serializable]
     public struct BaseParamsData

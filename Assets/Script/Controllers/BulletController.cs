@@ -1,4 +1,4 @@
-﻿using Assets.Script.Interfaces;
+﻿using Script.Interfaces;
 using UnityEngine;
 
 namespace PoketZone
@@ -18,7 +18,6 @@ namespace PoketZone
             _rigidbody.velocity = _direction * _speed;
             Destroy(gameObject, _lifeTime);
         }
-
         public void ApplyDamage(ICanBeDamaged canBeDamaged)
         {
             canBeDamaged.TakeDamage(_damage);

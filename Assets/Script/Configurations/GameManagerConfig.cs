@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Script.Configurations
+namespace Script.Configurations
 {
     [CreateAssetMenu(fileName = "GameManagerConfig", menuName = "Configurations/GameManagerConfig")]
     public class GameManagerConfig: ScriptableObject

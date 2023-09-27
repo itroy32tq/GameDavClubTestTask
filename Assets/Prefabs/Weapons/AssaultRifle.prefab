@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 296237822433307312}
   - component: {fileID: 4795320358867846759}
-  - component: {fileID: 7953669213602446351}
+  - component: {fileID: 5169752979075567569}
   m_Layer: 0
   m_Name: AssaultRifle
   m_TagString: Untagged
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7953669213602446351
+--- !u!114 &5169752979075567569
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,10 +94,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6687467710203049990}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2979712a13825b2448bde818d83e571e, type: 3}
+  m_Script: {fileID: 11500000, guid: ca904378eb578124e8d33fd1b93fcd3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _label: AssaultRifle
-  _icon: {fileID: 21300000, guid: 6532bc2c52f179142a7333cc0f5faeda, type: 3}
-  _spriteRenderer: {fileID: 4795320358867846759}
-  Bullet: {fileID: 7597036469746059008, guid: 872ee8f815f1b0a4482bc6c54fc06d90, type: 3}
+  _uiInventory: {fileID: 0}
