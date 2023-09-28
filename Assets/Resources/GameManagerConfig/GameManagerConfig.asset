@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: GameManagerConfig
   m_EditorClassIdentifier: 
   _tamplate: {fileID: 5738559412680948851, guid: df3f3d5c935932f46ac84d7776c65fca, type: 3}
-  _delay: 1
+  _delay: 2
   _count: 3

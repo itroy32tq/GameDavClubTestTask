@@ -17,6 +17,8 @@ namespace PoketZone
         private float _timeAfterLastSpawn;
         private int _spawned;
         private List<ItemInfo> _assetsList = new();
+        private float _radius = 3;
+        private List<Enemy> _enemies = new();
 
         public static GameManager Instance;
 
@@ -58,21 +60,28 @@ namespace PoketZone
         { 
             _currentConfig = _configs[index];
         }
+
         private void Update()
         {
-            if (_currentConfig == null) return;
+            if (_currentConfig == null || _currentConfig.Count < _enemies.Count) return;
 
             _timeAfterLastSpawn += Time.deltaTime;
 
             if (_timeAfterLastSpawn >= _currentConfig.Delay)
-            { 
-                
-                
+            {
+                //_enemies.Add(InstantiateEnemy());
+                _spawned++;
+                _timeAfterLastSpawn = 0;
             }
         }
-        private void InstantiateEnemy()
-        { 
-        
+
+        private Enemy InstantiateEnemy()
+        {
+
+            var randWithinCircle = (Vector2)transform.position + Random.insideUnitCircle * _radius;
+            Enemy enemy = Instantiate(_currentConfig.Tamplate, randWithinCircle, Quaternion.identity).GetComponent<Enemy>();
+            enemy.Init(_player);
+            return enemy;
         }
     }
 }
