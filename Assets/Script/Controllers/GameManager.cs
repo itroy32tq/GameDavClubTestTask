@@ -11,7 +11,7 @@ namespace PoketZone
     {
         [SerializeField] private List<GameManagerConfig> _configs;
         [SerializeField] private PlayerController _player;
-        [SerializeField] private GameObject _itenOnMapPrefab;
+        [SerializeField] private ItemController _itenOnMapPrefab;
         private GameManagerConfig _currentConfig;
         private int _currentIndex = 0;
         private float _timeAfterLastSpawn;
@@ -49,10 +49,10 @@ namespace PoketZone
 
         public void OnCreateItemOnMap(object sender, UIItem uiItem)
         {
-            var itemController = Instantiate(_itenOnMapPrefab, (_player.transform.position - new Vector3(-1, 0, 0)), Quaternion.identity).GetComponent<ItemController>();
+            var itemController = Instantiate(_itenOnMapPrefab, (_player.transform.position - new Vector3(-1, 0, 0)), Quaternion.identity);
             var inventoryItem = (UIInventoryItem)uiItem;
             var item = new Item(GetAssetForId(inventoryItem.ItemId));
-            item.State = new ItemState(inventoryItem.Item.State.Amount, false, true);
+            
             itemController.Init(item);
         }
 

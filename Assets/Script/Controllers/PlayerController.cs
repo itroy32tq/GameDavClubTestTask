@@ -7,6 +7,7 @@ using Script.ItemSpace;
 using Script.Interfaces;
 using Script.Configurations;
 using Script.Structs;
+using System.Collections.Generic;
 
 namespace PoketZone
 {
@@ -67,6 +68,7 @@ namespace PoketZone
         public void TakeItem(Item item)
         {
             var g = item.Info;
+            _playerInventory.FillSlots(new List<ItemsData>(){new ItemsData(item.Info, item.State.Amount)});
         }
     }
 }
