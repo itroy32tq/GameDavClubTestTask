@@ -11,7 +11,7 @@ namespace Script.ItemSpace
             clonedItem.State.Amount = State.Amount;
             return clonedItem;
         }
-        public Item(IItemInfo info)
+        public Item(ItemInfo info)
         {
             Info = info;
             State = new ItemState();

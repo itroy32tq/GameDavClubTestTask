@@ -1,4 +1,7 @@
 using Script.Configurations;
+using Script.ItemSpace;
+using Script.Structs;
+using Script.UI;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,24 +16,42 @@ namespace PoketZone
         private int _currentIndex = 0;
         private float _timeAfterLastSpawn;
         private int _spawned;
+        private List<ItemInfo> _assetsList = new();
 
         public static GameManager Instance;
 
         private void Awake()
         {
             Instance = this;
+            LoadItemAsset();
         }
         private void Start () 
         {
-            _player.InventoryModel.OnInventoryItemRemoveEvent += OnCreateItemOnMap;
             SetStartConfig(_currentIndex);
         }
 
-        private void OnCreateItemOnMap(object sender, string id, int amount)
+        private void LoadItemAsset()
         {
-            var itemController = Instantiate(_itenOnMapPrefab, (_player.transform.position - new Vector3(-5, 0, 0)), Quaternion.identity).GetComponent<ItemController>();
-            //itemController.Init();
+            ItemInfo[] assets = Resources.LoadAll<ItemInfo>("Item");
 
+            foreach (var asset in assets)
+            {
+                _assetsList.Add(asset);
+            }
+        }
+
+        private ItemInfo GetAssetForId(string id)
+        {
+            return _assetsList.Find(asset => asset.Id == id);
+        }
+
+        public void OnCreateItemOnMap(object sender, UIItem uiItem)
+        {
+            var itemController = Instantiate(_itenOnMapPrefab, (_player.transform.position - new Vector3(-1, 0, 0)), Quaternion.identity).GetComponent<ItemController>();
+            var inventoryItem = (UIInventoryItem)uiItem;
+            var item = new Item(GetAssetForId(inventoryItem.ItemId));
+            item.State = new ItemState(inventoryItem.Item.State.Amount, false, true);
+            itemController.Init(item);
         }
 
         private void SetStartConfig(int index)

@@ -17,3 +17,7 @@ MonoBehaviour:
   _description: 
   _maxItemsInInventarySlot: 2
   _icon: {fileID: 21300000, guid: 1aa8d4e1c6a8e934595f9ab61f2bf8aa, type: 3}
+  _scale: 5
+  _shootInterval: 0
+  _bulletPref: {fileID: 0}
+  _bulletItemId: 

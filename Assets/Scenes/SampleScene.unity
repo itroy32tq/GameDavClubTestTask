@@ -5002,8 +5002,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _configs:
   - {fileID: 11400000, guid: 8a1e5fa25329bcc439f1ba4b69e9e642, type: 2}
-  _player: {fileID: 0}
-  _itenOnMapPrefab: {fileID: 0}
+  _player: {fileID: 1036067321}
+  _itenOnMapPrefab: {fileID: 6769000455549074633, guid: 5c15a36ee95e5d4419708871177ac566, type: 3}
 --- !u!1001 &1969938977
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using PoketZone;
 using Script.Inventoty;
 using Script.ItemSpace;
 using Script.Structs;
@@ -32,17 +33,20 @@ namespace Script.UI
                 var uiItem = slotPref.GetComponentInChildren<UIItem>();
                 _uiItemList.Add(uiItem);
                 uiItem.OnUIItemRemoveButtonClickEvent += OnUIItemRemoveButtonClick;
-                
+                uiItem.OnUIItemRemoveButtonClickEvent += GameManager.Instance.OnCreateItemOnMap;
+
+
             }
             InventoryModel = new InventoryWithSlots(capacity);
             _updater = new InventoryStateUpdater(_uiSlotList);
             InventoryModel.OnInventoryStateChangedEvent += _updater.OnInventoryStateChanged;
             _grid.gameObject.SetActive(false);
         }
-        private void OnUIItemRemoveButtonClick(object sender, UIItem uiitem)
+        private void OnUIItemRemoveButtonClick(object sender, UIItem uiItem)
         {
-            InventoryModel.Remove(sender, ((UIInventoryItem)uiitem).ItemId);
+            InventoryModel.Remove(sender, ((UIInventoryItem)uiItem).ItemId);
         }
+
         private void OnShowInventaryButtonClick()
         {
             if (!_grid.gameObject.activeInHierarchy)

@@ -6,6 +6,7 @@ using Script.Inventoty;
 using Script.ItemSpace;
 using Script.Interfaces;
 using Script.Configurations;
+using Script.Structs;
 
 namespace PoketZone
 {
@@ -34,6 +35,11 @@ namespace PoketZone
             SetCurentWeapon(_defaultWeaponInfo);
             _playerInventory.FillSlots(_playerConfiguration.BaseInventoryItems);
         }
+
+        public void Binding()
+        {
+            
+        }
         private void OnShootButtonClick()
         {
             //из условия не понятно надо ли делать самонаводящуюся стрельбу
@@ -60,8 +66,7 @@ namespace PoketZone
 
         public void TakeItem(Item item)
         {
-            //var data = new ItemsData((item.Info, item.CountOnMap);
-            //_playerInventory.FillSlots(new List<ItemsData>(){data});
+            var g = item.Info;
         }
     }
 }

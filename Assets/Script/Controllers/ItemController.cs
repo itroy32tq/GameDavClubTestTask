@@ -24,6 +24,7 @@ namespace PoketZone
         public void Init(Item item)
         {
             _item = item;
+            _boxCollider.isTrigger = true;
             Awake();
         }
 
