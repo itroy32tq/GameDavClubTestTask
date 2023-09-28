@@ -5,12 +5,11 @@ namespace Script.StateMachine
 {
     public class EnemyStateMachine : StateMachine
     {
-        private Enemy _enemy;
-        public EnemyStateMachine(Enemy enemy)
+        public EnemyStateMachine()
         { 
-            _enemy = enemy;
             Initialize();
         }
+
         public override void Initialize()
         {
             StateMap = new();
@@ -19,11 +18,11 @@ namespace Script.StateMachine
 
             foreach (EnemyState state in enemyStates)
             {
-                state.Enemy = _enemy;
                 StateMap[state.GetType()] = state;
             }
             SetDefaultState();
         }
+
         private void SetDefaultState()
         {
             SetCurrentState(GetStateByType<EnemyStateIdle>());

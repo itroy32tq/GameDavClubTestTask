@@ -9,9 +9,12 @@ namespace Script.StateMachine
         [SerializeField, Range(10f, 15f)] float visibilityDistance;
         public override void Update()
         {
+            
             if (IsTargetExist() && IsPlayerSight())
             {
+                Debug.Log(Enemy.name);
                 NeedTransition = true;
+                
                 TargetState = AvailableTransitions[0];
             }
         }

@@ -11,7 +11,6 @@ namespace Script.StateMachine
         private Vector2 _direction;
         public override void Update()
         {
-
             _direction = Enemy.GetDistanceToTarget();
 
             if (isPlayerAlive() && IsCanAttack())

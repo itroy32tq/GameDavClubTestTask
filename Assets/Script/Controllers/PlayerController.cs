@@ -67,7 +67,6 @@ namespace PoketZone
 
         public void TakeItem(Item item)
         {
-            var g = item.Info;
             _playerInventory.FillSlots(new List<ItemsData>(){new ItemsData(item.Info, item.State.Amount)});
         }
     }

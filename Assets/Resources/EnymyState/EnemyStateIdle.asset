@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 489203cd1ce3e3b4d8e037db3e0e43cc, type: 3}
   m_Name: EnemyStateIdle
   m_EditorClassIdentifier: 
+  _stateId: idle
   _availableTransitions:
   - {fileID: 11400000, guid: 35dfb4ea462cac644a55ce6781e5a21d, type: 2}
   visibilityDistance: 10

@@ -18,7 +18,7 @@ namespace PoketZone
         protected override void Start()
         { 
             base.Start();
-            ESM = new EnemyStateMachine(this);
+            ESM = new EnemyStateMachine();
         }
         public void Init(PlayerController player) 
         { 
@@ -29,6 +29,8 @@ namespace PoketZone
         {
             if (ESM != null) 
             {
+                var state = (EnemyState)ESM.CurrentState;
+                state.Enemy = this;
                 ESM.CurrentState.Update();
 
                 if (ESM.CurrentState.NeedTransition)

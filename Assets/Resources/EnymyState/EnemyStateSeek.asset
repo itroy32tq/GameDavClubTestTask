@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fdbdece7a34ca64b928df70a55bab4d, type: 3}
   m_Name: EnemyStateSeek
   m_EditorClassIdentifier: 
+  _stateId: seek
   _availableTransitions:
   - {fileID: 11400000, guid: 7d3e5464532e873429fad07ae96ea1b6, type: 2}
   _attackDistance: 5

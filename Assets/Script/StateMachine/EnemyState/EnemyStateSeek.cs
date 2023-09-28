@@ -22,6 +22,7 @@ namespace Script.StateMachine
                 TargetState = AvailableTransitions[0];
             }
         }
+
         public override void Exit()
         {
             base.Exit();

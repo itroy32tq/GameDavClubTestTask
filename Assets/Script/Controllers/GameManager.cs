@@ -63,13 +63,15 @@ namespace PoketZone
 
         private void Update()
         {
-            if (_currentConfig == null || _currentConfig.Count < _enemies.Count) return;
+            if (_currentConfig == null) return;
+
+            if (_enemies.Count >= _currentConfig.Count) return;
 
             _timeAfterLastSpawn += Time.deltaTime;
 
             if (_timeAfterLastSpawn >= _currentConfig.Delay)
             {
-                //_enemies.Add(InstantiateEnemy());
+                _enemies.Add(InstantiateEnemy());
                 _spawned++;
                 _timeAfterLastSpawn = 0;
             }
@@ -80,6 +82,7 @@ namespace PoketZone
 
             var randWithinCircle = (Vector2)transform.position + Random.insideUnitCircle * _radius;
             Enemy enemy = Instantiate(_currentConfig.Tamplate, randWithinCircle, Quaternion.identity).GetComponent<Enemy>();
+            enemy.name = _enemies.Count.ToString();
             enemy.Init(_player);
             return enemy;
         }
