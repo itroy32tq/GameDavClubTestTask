@@ -20,27 +20,36 @@ namespace PoketZone
         [SerializeField] private UIInventory _playerInventory;
         [SerializeField] private SpriteRenderer _weaponSpriteRenderer;
         [SerializeField] private SpriteRenderer _playerSpriteRenderer;
-        [SerializeField] private ItemInfo _defaultWeaponInfo;
         [SerializeField] private PlayerConfiguration _playerConfiguration;
 
-        public InventoryWithSlots InventoryModel => _playerInventory.InventoryModel;
-
         private Vector2 _shootDerection = Vector2.right;
+        private ItemInfo _currentweapon;
+        public ItemInfo CurrentWeapon => _currentweapon;
+        public InventoryWithSlots InventoryModel => _playerInventory.InventoryModel;
         public event Action<object, Item> OnTakeItemOnMapEvent;
         protected override void Start()
         {
             //todo
             base.Start();
             _shootButton.onClick.AddListener(OnShootButtonClick);
-            _playerInventory.InitUIInventory(_playerConfiguration.GetBaseParams.InventoryCapacity, this);
-            SetCurentWeapon(_defaultWeaponInfo);
+
+            Init(_playerConfiguration);
+
+        }
+        private void Init(PlayerConfiguration configuration)
+        {
+            //создаем инвентарь
+            _playerInventory.InitUIInventory(_playerConfiguration.BaseParams.InventoryCapacity, this);
             _playerInventory.FillSlots(_playerConfiguration.BaseInventoryItems);
+            //местопложения, здоровье и скорость персонажа
+            transform.position = configuration.Location;
+            Health = configuration.BaseParams.MaxHealth;
+            Speed = configuration.BaseParams.MoveSpeed;
+            //оружие персонажа
+            var weaponInfo = GameManager.Instance.GetAssetForId(configuration.CurrentWeaponId);
+            SetCurentWeapon(weaponInfo);
         }
 
-        public void Binding()
-        {
-            
-        }
         private void OnShootButtonClick()
         {
             //из условия не понятно надо ли делать самонаводящуюся стрельбу
@@ -52,7 +61,8 @@ namespace PoketZone
         }
         private void SetCurentWeapon(ItemInfo weapon)
         {
-            weaponController.ConfigureWeapon(weapon);
+            _currentweapon = weapon;
+            weaponController.ConfigureWeapon(_currentweapon);
             _weaponSpriteRenderer.sprite = weaponController.Weapon.SpriteIcon;
             _weaponSpriteRenderer.sortingOrder = _playerSpriteRenderer.sortingOrder + 1;
         }
@@ -67,7 +77,7 @@ namespace PoketZone
 
         public void TakeItem(Item item)
         {
-            _playerInventory.FillSlots(new List<ItemsData>(){new ItemsData(item.Info, item.State.Amount)});
+            _playerInventory.FillSlots(new List<ItemsData>(){new ItemsData(item.Info.Id, item.State.Amount)});
         }
     }
 }

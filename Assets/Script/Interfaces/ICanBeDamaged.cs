@@ -4,8 +4,8 @@ namespace Script.Interfaces
 {
     public interface ICanBeDamaged
     {
-        void TakeDamage(int damage);
+        void TakeDamage(float damage);
 
-        event Action<int, int> OnUnitHealtChangedEvent;
+        event Action<float, float> OnUnitHealtChangedEvent;
     }
 }

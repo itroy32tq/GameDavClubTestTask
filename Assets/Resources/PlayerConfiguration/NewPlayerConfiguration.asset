@@ -16,10 +16,12 @@ MonoBehaviour:
     MaxHealth: 10
     MoveSpeed: 1
     InventoryCapacity: 6
+  _location: {x: -9, y: 0}
+  _currentWeapon: assault_rifle
   _baseItems:
-  - ItemInfo: {fileID: 11400000, guid: 01355d58364f2834581c3bcb641e1f07, type: 2}
+  - ItemInfoId: assault_rifle
     Count: 1
-  - ItemInfo: {fileID: 11400000, guid: 02f9159fb94d5224c9f83afef6fd72d8, type: 2}
+  - ItemInfoId: cartridge_5_45
     Count: 111
-  - ItemInfo: {fileID: 11400000, guid: 31b68436117534d4293fd429a23e5e07, type: 2}
+  - ItemInfoId: helmet
     Count: 1

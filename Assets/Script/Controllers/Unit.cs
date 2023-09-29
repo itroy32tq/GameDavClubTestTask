@@ -8,17 +8,17 @@ namespace PoketZone
     {
 
         [SerializeField, Range(1f, 10f)] private float _speed = 1f;
-        [SerializeField, Range(1f, 20f)] private int _health;
+        [SerializeField, Range(1f, 20f)] private float _health;
         [SerializeField] private Rigidbody2D _rigidbody;
 
-        private int _currentHealth;
+        private float _currentHealth;
 
-        public event Action<int, int> OnUnitHealtChangedEvent;
+        public event Action<float, float> OnUnitHealtChangedEvent;
 
-        public int Health { get => _currentHealth; protected set => _currentHealth = value; }
+        public float Health { get => _currentHealth; protected set => _currentHealth = value; }
 
         protected Rigidbody2D RigidBody => _rigidbody;
-        protected float Speed => _speed;
+        public float Speed { get => _speed; protected set => _speed = value; }
         protected Vector2 Faceing { get; set; } = Vector2.right;
 
         public event Action<Unit> OnUnitDiesEvent;
@@ -28,7 +28,7 @@ namespace PoketZone
             _currentHealth = _health;
         }
 
-        public void TakeDamage(int damage)
+        public void TakeDamage(float damage)
         {
             _currentHealth -= damage;
             OnUnitHealtChangedEvent?.Invoke(_currentHealth, _health);

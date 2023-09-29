@@ -8,12 +8,12 @@ namespace Script.Structs
     public struct ItemsData
     {
         [Tooltip("описание предмета")]
-        public ItemInfo ItemInfo;
+        public string ItemInfoId;
         [Tooltip("его количество")]
         public int Count;
-        public ItemsData(ItemInfo itemInfo, int count)
+        public ItemsData(string id, int count)
         {
-            ItemInfo = itemInfo; Count = count;
+            ItemInfoId = id; Count = count;
         }
     }
 }

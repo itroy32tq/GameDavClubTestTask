@@ -15,9 +15,9 @@ namespace Assets.Script.UI
             _canBeDamaged.OnUnitHealtChangedEvent += OnValueChanged;
             _slider.value = 1;
         }
-        public void OnValueChanged(int value, int maxValue)
+        public void OnValueChanged(float value, float maxValue)
         {
-            Slider.value = (float) value/maxValue;
+            Slider.value = value/maxValue;
         }
         private void OnDisable() 
         {

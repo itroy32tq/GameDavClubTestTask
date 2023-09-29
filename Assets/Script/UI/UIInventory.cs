@@ -58,7 +58,8 @@ namespace Script.UI
         {
             foreach (var part in data)
             {
-                var item = new Item(part.ItemInfo);
+                var info = GameManager.Instance.GetAssetForId(part.ItemInfoId);
+                Item item = new Item(info);
                 item.State.Amount = part.Count;
                 if (!InventoryModel.TryToAdd(this, item))
                     Debug.Log("не удалось добавить предметы из конфигурации в инвентарь");
