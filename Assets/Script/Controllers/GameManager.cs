@@ -55,7 +55,9 @@ namespace PoketZone
         public void OnCreateItemOnMap(object sender, Item item)
         {
             //todo
-            var unit = (Unit) sender;
+            var unit = sender as Unit;
+            if (unit == null) return;
+
             var pos = (Vector2)unit.transform.position + Random.insideUnitCircle*2;
             var itemController = Instantiate(_itenOnMapPrefab, pos, Quaternion.identity);
             itemController.Init(item);
