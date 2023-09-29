@@ -1,3 +1,4 @@
+using Script.ItemSpace;
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -14,7 +15,7 @@ namespace Script.UI
         private GridLayoutGroup _gridLayoutGroup;
         private Canvas _maineCanvas;
 
-        public event Action<object, UIItem> OnUIItemRemoveButtonClickEvent;
+        public event Action<object, Item> OnUIItemRemoveButtonClickEvent;
 
         private void Start()
         {
@@ -26,7 +27,7 @@ namespace Script.UI
 
         private void OnRemoveItemButtonClick()
         {
-            OnUIItemRemoveButtonClickEvent?.Invoke(_removeItemButton, this);
+            OnUIItemRemoveButtonClickEvent?.Invoke(_removeItemButton, ((UIInventoryItem)this).Item);
             _removeItemButton.gameObject.SetActive(false);
         }
         public void OnBeginDrag(PointerEventData eventData)

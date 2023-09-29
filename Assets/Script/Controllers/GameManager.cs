@@ -46,13 +46,18 @@ namespace PoketZone
         {
             return _assetsList.Find(asset => asset.Id == id);
         }
-
-        public void OnCreateItemOnMap(object sender, UIItem uiItem)
+        private ItemInfo GetRandomAsset()
         {
-            var itemController = Instantiate(_itenOnMapPrefab, (_player.transform.position - new Vector3(-1, 0, 0)), Quaternion.identity);
-            var inventoryItem = (UIInventoryItem)uiItem;
-            var item = new Item(GetAssetForId(inventoryItem.ItemId));
-            
+            var index = Random.Range(0, _assetsList.Count);
+            return _assetsList[index];
+        }
+
+        public void OnCreateItemOnMap(object sender, Item item)
+        {
+            //todo
+            var unit = (Unit) sender;
+            var pos = (Vector2)unit.transform.position + Random.insideUnitCircle*2;
+            var itemController = Instantiate(_itenOnMapPrefab, pos, Quaternion.identity);
             itemController.Init(item);
         }
 
@@ -82,9 +87,15 @@ namespace PoketZone
 
             var randWithinCircle = (Vector2)transform.position + Random.insideUnitCircle * _radius;
             Enemy enemy = Instantiate(_currentConfig.Tamplate, randWithinCircle, Quaternion.identity).GetComponent<Enemy>();
+            enemy.OnUnitDiesEvent += OnUnitDies;
             enemy.name = _enemies.Count.ToString();
             enemy.Init(_player);
             return enemy;
+        }
+
+        private void OnUnitDies(Unit unit)
+        {
+            OnCreateItemOnMap(unit, new Item(GetRandomAsset()));
         }
     }
 }

@@ -21,6 +21,7 @@ namespace PoketZone
         protected float Speed => _speed;
         protected Vector2 Faceing { get; set; } = Vector2.right;
 
+        public event Action<Unit> OnUnitDiesEvent;
 
         protected virtual void Start()
         {
@@ -31,7 +32,11 @@ namespace PoketZone
         {
             _currentHealth -= damage;
             OnUnitHealtChangedEvent?.Invoke(_currentHealth, _health);
-            if (Health <= 0) Destroy(gameObject);
+            if (Health <= 0)
+            {
+                Destroy(gameObject);
+                OnUnitDiesEvent?.Invoke(this);
+            }
         }
             
         public void MakeMove(Vector2 direction)

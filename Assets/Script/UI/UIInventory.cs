@@ -17,6 +17,7 @@ namespace Script.UI
         private List<UIInventorySlot> _uiSlotList = new List<UIInventorySlot>();
         private List<UIItem> _uiItemList = new List<UIItem>();
         private InventoryStateUpdater _updater;
+        private PlayerController _playerController;
         public InventoryStateUpdater InventoryUpdater => _updater;
         public InventoryWithSlots InventoryModel { get; private set; }
 
@@ -24,8 +25,10 @@ namespace Script.UI
         {
             _showInventoryButton.onClick.AddListener(OnShowInventaryButtonClick);
         }
-        public void InitUIInventory(int capacity)
+        public void InitUIInventory(int capacity, PlayerController playerController)
         {
+            _playerController = playerController;
+
             for (int i = 0; i < capacity; i++)
             {
                 var slotPref = Instantiate(_uiSlot, _grid);
@@ -33,18 +36,16 @@ namespace Script.UI
                 var uiItem = slotPref.GetComponentInChildren<UIItem>();
                 _uiItemList.Add(uiItem);
                 uiItem.OnUIItemRemoveButtonClickEvent += OnUIItemRemoveButtonClick;
-                uiItem.OnUIItemRemoveButtonClickEvent += GameManager.Instance.OnCreateItemOnMap;
-
-
             }
             InventoryModel = new InventoryWithSlots(capacity);
             _updater = new InventoryStateUpdater(_uiSlotList);
             InventoryModel.OnInventoryStateChangedEvent += _updater.OnInventoryStateChanged;
             _grid.gameObject.SetActive(false);
         }
-        private void OnUIItemRemoveButtonClick(object sender, UIItem uiItem)
+        private void OnUIItemRemoveButtonClick(object sender, Item Item)
         {
-            InventoryModel.Remove(sender, ((UIInventoryItem)uiItem).ItemId);
+            GameManager.Instance.OnCreateItemOnMap(_playerController, (Item)Item.Clone());
+            InventoryModel.Remove(sender, Item.Info.Id, Item.State.Amount);
         }
 
         private void OnShowInventaryButtonClick()
