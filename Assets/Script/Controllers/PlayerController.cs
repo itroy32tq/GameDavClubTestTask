@@ -45,7 +45,7 @@ namespace PoketZone
             Health = configuration.BaseParams.MaxHealth;
             Speed = configuration.BaseParams.MoveSpeed;
             //оружие персонажа
-            var weaponInfo = GameManager.Instance.GetAssetForId(configuration.CurrentWeaponId);
+            var weaponInfo = ItemsManager.Instance.GetAssetForId(configuration.CurrentWeaponId);
             SetCurentWeapon(weaponInfo);
             //заполняем инвентарь
             _playerInventory.FillSlots(_playerConfiguration.InventoryItems);

@@ -4540,7 +4540,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1191, y: 458}
+  m_AnchoredPosition: {x: 991, y: 625}
   m_SizeDelta: {x: 250, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &675383969
@@ -5224,6 +5224,7 @@ GameObject:
   - component: {fileID: 1962045937}
   - component: {fileID: 1962045938}
   - component: {fileID: 1962045939}
+  - component: {fileID: 1962045940}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -5258,15 +5259,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f55f410bf4eadd2488043e493f6fd6cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _configs:
-  - {fileID: 11400000, guid: 8a1e5fa25329bcc439f1ba4b69e9e642, type: 2}
-  - {fileID: 11400000, guid: 8a1e5fa25329bcc439f1ba4b69e9e642, type: 2}
-  - {fileID: 11400000, guid: 8a1e5fa25329bcc439f1ba4b69e9e642, type: 2}
   _player: {fileID: 1036067321}
   _itenOnMapPrefab: {fileID: 6769000455549074636, guid: 5c15a36ee95e5d4419708871177ac566, type: 3}
-  _spawnRadius: 3
   _dropRadius: 1.5
-  _storageManager: {fileID: 1962045939}
 --- !u!114 &1962045939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5281,6 +5276,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _loadConfigurationButton: {fileID: 675383969}
   _player: {fileID: 1036067321}
+  _spawnManager: {fileID: 1962045940}
+--- !u!114 &1962045940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1962045935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e2c9e57a0a3588428dc0fd6a2e6baa7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _configs:
+  - {fileID: 11400000, guid: 8a1e5fa25329bcc439f1ba4b69e9e642, type: 2}
+  - {fileID: 11400000, guid: 8a1e5fa25329bcc439f1ba4b69e9e642, type: 2}
+  - {fileID: 11400000, guid: 8a1e5fa25329bcc439f1ba4b69e9e642, type: 2}
+  _player: {fileID: 1036067321}
+  _spawnRadius: 3
+  _storageManager: {fileID: 1962045939}
+  _itemsManager: {fileID: 1962045938}
 --- !u!1001 &1969938977
 PrefabInstance:
   m_ObjectHideFlags: 0

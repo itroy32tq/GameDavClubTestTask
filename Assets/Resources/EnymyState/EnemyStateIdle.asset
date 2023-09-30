@@ -15,4 +15,4 @@ MonoBehaviour:
   _stateId: idle
   _availableTransitions:
   - {fileID: 11400000, guid: 35dfb4ea462cac644a55ce6781e5a21d, type: 2}
-  visibilityDistance: 10
+  visibilityDistance: 9

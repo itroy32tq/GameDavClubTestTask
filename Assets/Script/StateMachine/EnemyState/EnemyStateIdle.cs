@@ -6,19 +6,17 @@ namespace Script.StateMachine
 {
     public class EnemyStateIdle : EnemyState
     {
-        [SerializeField, Range(10f, 15f)] float visibilityDistance;
+        [SerializeField, Range(0f, 25f)] float visibilityDistance;
         public override void Update()
         {
             
             if (IsTargetExist() && IsPlayerSight())
             {
-                Debug.Log(Enemy.name);
+
                 NeedTransition = true;
-                
                 TargetState = AvailableTransitions[0];
             }
         }
-
         private bool IsTargetExist()
         {
             return AvailableTransitions[0] != null && Enemy.Target != null;

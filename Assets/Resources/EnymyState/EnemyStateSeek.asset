@@ -15,4 +15,4 @@ MonoBehaviour:
   _stateId: seek
   _availableTransitions:
   - {fileID: 11400000, guid: 7d3e5464532e873429fad07ae96ea1b6, type: 2}
-  _attackDistance: 5
+  _attackDistance: 2

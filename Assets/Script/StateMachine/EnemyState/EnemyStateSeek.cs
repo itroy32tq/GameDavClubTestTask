@@ -5,7 +5,7 @@ namespace Script.StateMachine
 {
     public class EnemyStateSeek : EnemyState
     {
-        [SerializeField, Range(5f, 15f)] private float _attackDistance;
+        [SerializeField, Range(1.5f, 10f)] private float _attackDistance;
 
         private Vector2 _direction;
         public override void Update()

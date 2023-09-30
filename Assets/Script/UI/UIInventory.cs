@@ -44,7 +44,7 @@ namespace Script.UI
         }
         private void OnUIItemRemoveButtonClick(object sender, Item Item)
         {
-            GameManager.Instance.OnCreateItemOnMap(_playerController, (Item)Item.Clone());
+            ItemsManager.Instance.OnCreateItemOnMap(_playerController, (Item)Item.Clone());
             InventoryModel.Remove(sender, Item.Info.Id, Item.State.Amount);
         }
 
@@ -58,7 +58,7 @@ namespace Script.UI
         {
             foreach (var part in data)
             {
-                var info = GameManager.Instance.GetAssetForId(part.ItemInfoId);
+                var info = ItemsManager.Instance.GetAssetForId(part.ItemInfoId);
                 Item item = new Item(info);
                 item.State.Amount = part.Count;
                 if (!InventoryModel.TryToAdd(this, item))
