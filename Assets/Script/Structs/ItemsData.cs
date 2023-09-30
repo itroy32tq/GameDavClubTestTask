@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Script.Structs
 {
     [Serializable]
-    public struct ItemsData
+    public class ItemsData
     {
         [Tooltip("описание предмета")]
         public string ItemInfoId;

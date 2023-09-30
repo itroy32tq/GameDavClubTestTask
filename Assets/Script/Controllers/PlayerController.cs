@@ -26,7 +26,7 @@ namespace PoketZone
         private ItemInfo _currentweapon;
         public ItemInfo CurrentWeapon => _currentweapon;
         public InventoryWithSlots InventoryModel => _playerInventory.InventoryModel;
-        public event Action<object, Item> OnTakeItemOnMapEvent;
+        //public event Action<object, Item> OnTakeItemOnMapEvent;
         protected override void Start()
         {
             //todo
@@ -36,11 +36,10 @@ namespace PoketZone
             Init(_playerConfiguration);
 
         }
-        private void Init(PlayerConfiguration configuration)
+        public void Init(PlayerConfiguration configuration)
         {
             //создаем инвентарь
             _playerInventory.InitUIInventory(_playerConfiguration.BaseParams.InventoryCapacity, this);
-            _playerInventory.FillSlots(_playerConfiguration.BaseInventoryItems);
             //местопложения, здоровье и скорость персонажа
             transform.position = configuration.Location;
             Health = configuration.BaseParams.MaxHealth;
@@ -48,6 +47,8 @@ namespace PoketZone
             //оружие персонажа
             var weaponInfo = GameManager.Instance.GetAssetForId(configuration.CurrentWeaponId);
             SetCurentWeapon(weaponInfo);
+            //заполняем инвентарь
+            _playerInventory.FillSlots(_playerConfiguration.InventoryItems);
         }
 
         private void OnShootButtonClick()

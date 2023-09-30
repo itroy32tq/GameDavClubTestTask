@@ -5,6 +5,7 @@ using Script.Structs;
 using Script.UI;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace PoketZone
@@ -94,27 +95,24 @@ namespace PoketZone
         }
         private IEnumerator DelayForRespawn(float delay)
         {
-            _storageManager.SaveData(GetCurrentPlayerConfig());
             yield return new WaitForSeconds(delay);
             _storageManager.SaveData(GetCurrentPlayerConfig());
             SetConfig(_currentIndex + 1);
-
         }
 
         private object GetCurrentPlayerConfig()
         {
-            PlayerConfiguration p = ScriptableObject.CreateInstance<PlayerConfiguration>()
+            PlayerConfiguration newConfig = ScriptableObject.CreateInstance<PlayerConfiguration>();
+            newConfig.BaseParams = new BaseParamsData()
             {
-                new BaseParamsData()
-                {
-                    MaxHealth = _player.Health,
-                    MoveSpeed = _player.Speed,
-                    InventoryCapacity = _player.InventoryModel.Capacity
-                };
-                _player.transform.position;
-                _player.CurrentWeapon.Id;
-                GetInventoryData();
-            }
+                MaxHealth = _player.Health,
+                MoveSpeed = _player.Speed,
+                InventoryCapacity = _player.InventoryModel.Capacity
+            };
+            newConfig.Location = _player.transform.position;
+            newConfig.CurrentWeaponId = _player.CurrentWeapon.Id;
+            newConfig.InventoryItems = GetInventoryData();
+            return newConfig;
         }
 
         private List<ItemsData> GetInventoryData()
@@ -122,7 +120,9 @@ namespace PoketZone
             List<ItemsData> result = new List<ItemsData>();
             foreach (var item in _player.InventoryModel.GetAllItems())
             {
-                result.Add(new ItemsData() { ItemInfoId = item.Info.Id, Count = item.State.Amount });
+                var v = result.FirstOrDefault(d => d.ItemInfoId == item.Info.Id);
+                if (result.Contains(v)) v.Count += item.State.Amount;
+                else result.Add(new ItemsData(item.Info.Id, item.State.Amount));
             }
             return result;
         }
