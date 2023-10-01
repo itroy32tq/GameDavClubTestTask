@@ -42,7 +42,7 @@ namespace PoketZone
 
             if (_spawned >= _configs.Count)
             {
-                //StartCoroutine(DelayForRespawn(_currentConfig.DelayForRespawn));
+                StartCoroutine(DelayForRespawn(_currentConfig.DelayForRespawn));
                 _spawned = 0;
                 _currentConfig = null;
                 return;
