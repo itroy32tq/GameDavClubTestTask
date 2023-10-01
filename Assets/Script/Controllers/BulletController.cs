@@ -12,7 +12,6 @@ namespace PoketZone
 
         private Vector2 _direction = Vector2.left;
         public Vector2 Direction { get => _direction; set => _direction = value; }
-
         private void Start()
         {
             _rigidbody.velocity = _direction * _speed;
@@ -22,7 +21,6 @@ namespace PoketZone
         {
             canBeDamaged.TakeDamage(_damage);
         }
-
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.gameObject.TryGetComponent(out ICanBeDamaged unit))

@@ -22,6 +22,6 @@ MonoBehaviour:
   - ItemInfoId: assault_rifle
     Count: 1
   - ItemInfoId: cartridge_5_45
-    Count: 111
+    Count: 150
   - ItemInfoId: helmet
-    Count: 1
+    Count: 4

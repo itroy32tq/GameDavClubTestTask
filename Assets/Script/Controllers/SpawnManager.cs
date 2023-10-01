@@ -32,7 +32,6 @@ namespace PoketZone
         {
             SetConfig(_currentIndex);
         }
-
         private void SetConfig(int index)
         {
             _currentConfig = _configs[index];
@@ -43,7 +42,7 @@ namespace PoketZone
 
             if (_spawned >= _configs.Count)
             {
-                StartCoroutine(DelayForRespawn(_currentConfig.DelayForRespawn));
+                //StartCoroutine(DelayForRespawn(_currentConfig.DelayForRespawn));
                 _spawned = 0;
                 _currentConfig = null;
                 return;
@@ -64,15 +63,14 @@ namespace PoketZone
             yield return new WaitForSeconds(delay);
             OnRespawnEnemyEvent?.Invoke();
             _currentIndex++;
-            if (_currentIndex > _configs.Count)
+            if (_currentIndex >= _configs.Count)
             {
                 EditorApplication.isPaused = true;
                 _currentIndex = 0;
-                yield break;
             }
+            SetConfig(_currentIndex);
             Debug.Log("Respawn!!!!!!!");
         }
-       
         private Enemy InstantiateEnemy()
         {
             var randWithinCircle = (Vector2)transform.position + UnityEngine.Random.insideUnitCircle * _spawnRadius;
@@ -81,6 +79,11 @@ namespace PoketZone
             enemy.name = _enemies.Count.ToString();
             enemy.Init(_player);
             return enemy;
+        }
+        private void OnDisable()
+        {
+            foreach(var enemy in _enemies)
+                enemy.OnUnitDiesEvent -= _itemsManager.OnUnitDies;
         }
     }
 }

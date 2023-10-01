@@ -6,11 +6,11 @@ namespace PoketZone
 { 
     public class ItemController: MonoBehaviour
     {
-        [SerializeField] private Item _item;
+        
         [SerializeField] private SpriteRenderer _spriteRenderer;
         [SerializeField] private BoxCollider2D _boxCollider;
+        private Item _item;
         public Item ItemOnMap { get => _item; set => _item = value; }
-
         private void Awake()
         {
             if (_item != null)
@@ -27,15 +27,12 @@ namespace PoketZone
             _boxCollider.isTrigger = true;
             Awake();
         }
-
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.gameObject.TryGetComponent(out ICanTakeItem canTakeItem))
             {
-                canTakeItem.TakeItem(_item);
-                Destroy(gameObject);
+                if (canTakeItem.TryTakeItem(_item)) Destroy(gameObject);
             }
         }
-
     }
 }

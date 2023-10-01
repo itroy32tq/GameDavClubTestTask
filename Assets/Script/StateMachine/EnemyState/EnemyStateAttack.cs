@@ -16,6 +16,7 @@ namespace Script.StateMachine
             if (isPlayerAlive() && IsCanAttack())
             {
                 Debug.Log("Атака");
+                //конкретной реализации атаки не делал, если это не выстрел, то без анимация выглядит максимально нелепо
             }
             else if (!IsCanAttack())
             {
@@ -27,7 +28,6 @@ namespace Script.StateMachine
                 NeedTransition = true;
                 TargetState = AvailableTransitions[1];
             }
-
         }
 
         private bool isPlayerAlive()

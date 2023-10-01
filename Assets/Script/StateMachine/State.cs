@@ -1,4 +1,3 @@
-using PoketZone;
 using UnityEngine;
 
 namespace Script.StateMachine
@@ -13,7 +12,5 @@ namespace Script.StateMachine
         public virtual void Enter() { _needTransition = false; }
         public virtual void Exit() { }
         public virtual void Update() { }
-        
-
     }
 }

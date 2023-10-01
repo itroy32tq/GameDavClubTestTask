@@ -9,7 +9,6 @@ namespace Script.StateMachine
         { 
             Initialize();
         }
-
         public override void Initialize()
         {
             StateMap = new();
@@ -22,7 +21,6 @@ namespace Script.StateMachine
             }
             SetDefaultState();
         }
-
         private void SetDefaultState()
         {
             SetCurrentState(GetStateByType<EnemyStateIdle>());

@@ -8,6 +8,6 @@ namespace Script.ItemSpace
         public ItemInfo Info { get; set; }
         public ItemState State { get; set; }
         public Type Type { get; set; }
-        public virtual BaseItem Clone() { return this; }
+        public abstract BaseItem Clone();
     }
 }

@@ -5,7 +5,7 @@ namespace Script.Interfaces
 {
     public interface ICanTakeItem
     {
-        void TakeItem(Item item);
+        bool TryTakeItem(Item item);
 
         //event Action<object, It> OnTakeItemOnMapEvent;
     }

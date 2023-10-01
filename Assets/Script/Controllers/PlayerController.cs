@@ -27,14 +27,15 @@ namespace PoketZone
         public ItemInfo CurrentWeapon => _currentweapon;
         public InventoryWithSlots InventoryModel => _playerInventory.InventoryModel;
         //public event Action<object, Item> OnTakeItemOnMapEvent;
+
+        private void OnEnable()
+        {
+            _shootButton.onClick.AddListener(OnShootButtonClick);
+        }
         protected override void Start()
         {
-            //todo
             base.Start();
-            _shootButton.onClick.AddListener(OnShootButtonClick);
-
             Init(_playerConfiguration);
-
         }
         public void Init(PlayerConfiguration configuration)
         {
@@ -50,7 +51,6 @@ namespace PoketZone
             //заполняем инвентарь
             _playerInventory.FillSlots(_playerConfiguration.InventoryItems);
         }
-
         private void OnShootButtonClick()
         {
             //из условия не понятно надо ли делать самонаводящуюся стрельбу
@@ -67,7 +67,6 @@ namespace PoketZone
             _weaponSpriteRenderer.sprite = weaponController.Weapon.SpriteIcon;
             _weaponSpriteRenderer.sortingOrder = _playerSpriteRenderer.sortingOrder + 1;
         }
-
         private Vector2 GetShootDirection()
         {
             if (_shootDerection == Vector2.right)
@@ -75,10 +74,16 @@ namespace PoketZone
             //todo
             return _shootDerection;
         }
-
-        public void TakeItem(Item item)
+        public bool TryTakeItem(Item item)
         {
-            _playerInventory.FillSlots(new List<ItemsData>(){new ItemsData(item.Info.Id, item.State.Amount)});
+            var isPlace = InventoryModel.IsPlaceForItem(item.Info.Id);
+            if (isPlace) 
+                _playerInventory.FillSlots(new List<ItemsData>(){new ItemsData(item.Info.Id, item.State.Amount)});
+            return isPlace;
+        }
+        private void OnDisable()
+        {
+            _shootButton.onClick.RemoveListener(OnShootButtonClick);
         }
     }
 }

@@ -2,6 +2,7 @@
 using Assets.StorageService;
 using PoketZone;
 using Script.Configurations;
+using Script.ItemSpace;
 using Script.Structs;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,10 +19,13 @@ namespace Assets.Script.Controllers
         private IStorageService _storageService;
         private const string key = "playerConfiguration";
 
+        private void OnEnable()
+        {
+            _loadConfigurationButton.onClick.AddListener(LoadDataButtonClick);
+            _spawnManager.OnRespawnEnemyEvent += OnRespawnEnemy;
+        }
         private void Start()
         {
-            _spawnManager.OnRespawnEnemyEvent += OnRespawnEnemy;
-            _loadConfigurationButton.onClick.AddListener(LoadDataButtonClick);
             _storageService = new JsonToFileStorageService();
         }
 
@@ -37,7 +41,6 @@ namespace Assets.Script.Controllers
         {
             _storageService.Save(key, GetCurrentPlayerConfig());
         }
-
         private object GetCurrentPlayerConfig()
         {
             PlayerConfiguration newConfig = ScriptableObject.CreateInstance<PlayerConfiguration>();
@@ -62,6 +65,11 @@ namespace Assets.Script.Controllers
                 else result.Add(new ItemsData(item.Info.Id, item.State.Amount));
             }
             return result;
+        }
+        private void OnDisable()
+        {
+            _loadConfigurationButton.onClick.RemoveListener(LoadDataButtonClick);
+            _spawnManager.OnRespawnEnemyEvent -= OnRespawnEnemy;
         }
     }
 }

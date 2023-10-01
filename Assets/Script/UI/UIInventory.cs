@@ -21,7 +21,7 @@ namespace Script.UI
         public InventoryStateUpdater InventoryUpdater => _updater;
         public InventoryWithSlots InventoryModel { get; private set; }
 
-        private void Start()
+        private void OnEnable()
         {
             _showInventoryButton.onClick.AddListener(OnShowInventaryButtonClick);
         }
@@ -47,7 +47,6 @@ namespace Script.UI
             ItemsManager.Instance.OnCreateItemOnMap(_playerController, (Item)Item.Clone());
             InventoryModel.Remove(sender, Item.Info.Id, Item.State.Amount);
         }
-
         private void OnShowInventaryButtonClick()
         {
             if (!_grid.gameObject.activeInHierarchy)
@@ -77,6 +76,11 @@ namespace Script.UI
                 uiSlot.SetSlot(slot);
                 uiSlot.Refresh();
             }
+        }
+        private void OnDisable()
+        {
+            _showInventoryButton.onClick.RemoveListener(OnShowInventaryButtonClick);
+            InventoryModel.OnInventoryStateChangedEvent -= _updater.OnInventoryStateChanged;
         }
     }
 }

@@ -11,7 +11,6 @@ namespace Script.Inventoty
             _uiSlotList = uiSlotList;
             
         }
-
         public void OnInventoryStateChanged(object sender)
         {
             foreach (var slot in _uiSlotList)

@@ -14,6 +14,8 @@ namespace Script.Inventoty
         public event Action<object> OnInventoryStateChangedEvent;
         public int Capacity { get; set; }
         public bool IsFull => _slots.All(_slots => _slots.IsFull);
+        public IInventorySlot EmptySlot => _slots.Find(slot => slot.IsEmpty);
+
         private List<IInventorySlot> _slots;
         public InventoryWithSlots(int capacity)
         {
@@ -28,7 +30,6 @@ namespace Script.Inventoty
         {
             return _slots.Find(slots => slots.ItemType == itemType).Item;
         }
-
         public Item GetItem(string id)
         {
             return _slots.Find(slots => slots.ItemId == id).Item;
@@ -62,6 +63,12 @@ namespace Script.Inventoty
                 allItemsOfId.Add(slot.Item);
             }
             return allItemsOfId.ToArray();
+        }
+        public bool IsPlaceForItem(string id)
+        {
+            if (EmptySlot != null) return true;
+            var slotsOfId = _slots.FindAll(slot => !slot.IsEmpty && slot.ItemId == id);
+            return !slotsOfId.All(slot => slot.IsFull);
         }
         public Item[] GetEquippedItems()
         {
@@ -100,10 +107,8 @@ namespace Script.Inventoty
             if (slotWithSameItemButNotEmpty != null)
                 return TryAddToSlot(sender, slotWithSameItemButNotEmpty, item);
 
-            var emptySlot = _slots.Find(slot => slot.IsEmpty);
-
-            if (emptySlot != null)
-                return TryAddToSlot(sender, emptySlot, item);
+            if (EmptySlot != null)
+                return TryAddToSlot(sender, EmptySlot, item);
 
             Debug.Log($"Cannot add item ({item.Type}), amount: {item.State.Amount}, " + $"because there is no place for that");
 

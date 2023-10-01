@@ -8,13 +8,11 @@ namespace PoketZone
         [SerializeField] private string _name;
         [SerializeField, Range(1f,10f)] int _reward;
 
-        //todo
-        [SerializeField] private PlayerController _target;
-        protected int Reward => _reward;
+        private PlayerController _target;
+
         protected EnemyStateMachine ESM { get; private set; }
 
         public PlayerController Target => _target;
-
         protected override void Start()
         { 
             base.Start();
@@ -24,7 +22,6 @@ namespace PoketZone
         { 
             _target = player;
         }
-
         protected void Update()
         {
             if (ESM != null) 
@@ -43,6 +40,5 @@ namespace PoketZone
         {
             return Target.transform.position - transform.position;
         }
-
     }
 }

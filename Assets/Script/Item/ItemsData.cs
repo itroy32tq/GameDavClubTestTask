@@ -1,8 +1,7 @@
-﻿using Script.ItemSpace;
-using System;
+﻿using System;
 using UnityEngine;
 
-namespace Script.Structs
+namespace Script.ItemSpace
 {
     [Serializable]
     public class ItemsData

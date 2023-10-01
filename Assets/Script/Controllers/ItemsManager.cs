@@ -14,8 +14,7 @@ namespace PoketZone
     {
         [SerializeField] private PlayerController _player;
         [SerializeField] private ItemController _itenOnMapPrefab;
-        [SerializeField, Range(1f, 5f)] private float _dropRadius = 2f;
-        private float _selfRadius = 1.5f;
+        [SerializeField, Range(1f, 5f)] private float _dropRadius = 1.5f;
         private List<ItemInfo> _assetsList = new();
 
         public static ItemsManager Instance;
@@ -25,7 +24,6 @@ namespace PoketZone
             Instance = this;
             LoadItemAsset();
         }
-
         private void LoadItemAsset()
         {
             ItemInfo[] assets = Resources.LoadAll<ItemInfo>("Item");
@@ -35,7 +33,6 @@ namespace PoketZone
                 _assetsList.Add(asset);
             }
         }
-
         public ItemInfo GetAssetForId(string id)
         {
             return _assetsList.Find(asset => asset.Id == id);
@@ -50,12 +47,11 @@ namespace PoketZone
             //todo
             var unit = sender as Unit;
             if (unit == null) return;
-            var circle = Random.insideUnitCircle + new Vector2(_selfRadius, 0);
+            var circle = Random.insideUnitCircle + new Vector2(_dropRadius, 0);
             var pos = (Vector2)unit.transform.position + circle;
             var itemController = Instantiate(_itenOnMapPrefab, pos, Quaternion.identity);
             itemController.Init(item);
         }
-
         public void OnUnitDies(Unit unit)
         {
             OnCreateItemOnMap(unit, new Item(GetRandomAsset()));

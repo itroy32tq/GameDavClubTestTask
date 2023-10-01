@@ -22,17 +22,14 @@ namespace Script.StateMachine
                 TargetState = AvailableTransitions[0];
             }
         }
-
         public override void Exit()
         {
             base.Exit();
             Enemy.MakeMove(Vector2.zero);
         }
-
         private bool IsCanAttack()
         {
             return _direction.SqrMagnitude() <= _attackDistance * _attackDistance;
         }
-
     }
 }

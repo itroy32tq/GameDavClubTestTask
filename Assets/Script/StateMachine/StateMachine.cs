@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using UnityEngine;
 
 namespace Script.StateMachine
 {
@@ -10,12 +8,10 @@ namespace Script.StateMachine
         private State _currentState;
         public State CurrentState { get=> _currentState; protected set => _currentState = value; }
         protected Dictionary<Type, State> StateMap { get; set; }
-
         protected State GetStateByType<T>() where T : State
         {
             return StateMap[typeof(T)];
         }
-
         public void SetCurrentState(State newState)
         {
             if (_currentState != null)
@@ -24,7 +20,6 @@ namespace Script.StateMachine
             _currentState = newState;
             _currentState.Enter();
         }
-
         public abstract void Initialize();
     }
 }

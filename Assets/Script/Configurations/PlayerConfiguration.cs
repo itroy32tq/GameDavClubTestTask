@@ -1,5 +1,5 @@
+using Script.ItemSpace;
 using Script.Structs;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,11 +19,6 @@ namespace Script.Configurations
 
         [SerializeField, Header("Начальный инвентарь персонажа")] private List<ItemsData> _baseItems;
         public List<ItemsData> InventoryItems { get => _baseItems; set => _baseItems = value; }
-
-       /* public PlayerConfiguration(BaseParamsData baseParamsData, Vector2 location, string currentWeapon, List<ItemsData> itemsData)
-        {
-            _baseParams = baseParamsData; _location = location; _currentWeapon = currentWeapon; _baseItems = itemsData;
-        }*/
     }
 }
 

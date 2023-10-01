@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 namespace Script.UI
 {
-
     public class UIItem : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IPointerClickHandler
     {
         [SerializeField] private RectTransform _rectTransform;
@@ -17,10 +16,13 @@ namespace Script.UI
 
         public event Action<object, Item> OnUIItemRemoveButtonClickEvent;
 
+        private void OnEnable()
+        {
+            _removeItemButton.onClick.AddListener(OnRemoveItemButtonClick);
+        }
         private void Start()
         {
             _removeItemButton.gameObject.SetActive(false);
-            _removeItemButton.onClick.AddListener(OnRemoveItemButtonClick);
             _maineCanvas = GetComponentInParent<Canvas>();
             _gridLayoutGroup = GetComponentInParent<GridLayoutGroup>();
         }
@@ -53,6 +55,10 @@ namespace Script.UI
             if (!_removeItemButton.gameObject.activeInHierarchy)
                 _removeItemButton.gameObject.SetActive(true);
             else _removeItemButton.gameObject.SetActive(false);
+        }
+        private void OnDisable()
+        {
+            _removeItemButton.onClick.RemoveListener(OnRemoveItemButtonClick);
         }
     }
 }

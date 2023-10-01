@@ -10,9 +10,9 @@ namespace PoketZone
         private int _bulletsCount;
         private string _bulletItemId;
         private ItemInfo _weapon;
-        public ItemInfo Weapon { get => _weapon;}
-
         private float _lastShootTime;
+
+        public ItemInfo Weapon { get => _weapon; }
 
         public void ConfigureWeapon(ItemInfo weapon)
         { 
@@ -20,13 +20,11 @@ namespace PoketZone
             _uiInventory.InventoryModel.OnInventoryItemAddedEvent += OnInventoryItemAdded;
             _bulletItemId = _weapon.BulletItemId;
         }
-
         private void OnInventoryItemAdded(object sender, Item item, int amount)
         {
             if (item.Info.Id != _bulletItemId) return;
             _bulletsCount += amount;
         }
-
         public virtual void Shoot(Vector2 shootPoint, Vector2 direction)
         {
 
@@ -46,6 +44,10 @@ namespace PoketZone
                 _lastShootTime = currentTime;
                 _uiInventory.InventoryModel.Remove(this, _bulletItemId);
             }
+        }
+        private void OnDisable()
+        {
+            _uiInventory.InventoryModel.OnInventoryItemAddedEvent -= OnInventoryItemAdded;
         }
     }
 }
