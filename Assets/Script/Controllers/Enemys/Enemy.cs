@@ -6,8 +6,6 @@ namespace PoketZone
     public abstract class Enemy : Unit
     {
         [SerializeField] private string _name;
-        [SerializeField, Range(1f,10f)] int _reward;
-
         private PlayerController _target;
 
         protected EnemyStateMachine ESM { get; private set; }

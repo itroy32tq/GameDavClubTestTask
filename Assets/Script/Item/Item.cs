@@ -1,16 +1,13 @@
+using Assets.Script.Interfaces;
 using Script.Interfaces;
 using Script.Structs;
+using System;
 
 namespace Script.ItemSpace
 {
     public class Item : BaseItem
     {
-        public override BaseItem Clone()
-        {
-            var clonedItem = new Item(Info);
-            clonedItem.State.Amount = State.Amount;
-            return clonedItem;
-        }
+
         public Item(ItemInfo info)
         {
             Info = info;

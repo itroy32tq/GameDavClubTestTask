@@ -1,5 +1,6 @@
 ﻿using Assets.Script.Controllers;
 using Script.Configurations;
+using Script.StateMachine;
 using Script.Structs;
 using System;
 using System.Collections;
@@ -26,52 +27,33 @@ namespace PoketZone
         private int _spawned = 0;
         private List<Enemy> _enemies = new();
 
+        protected SpawnerStateMachine SSM { get; private set; }
+
         public Action OnRespawnEnemyEvent;
+        public List<GameManagerConfig> Configs => _configs;
+        public GameManagerConfig CurrentConfig { get => _currentConfig; set => _currentConfig = value; }
 
         private void Start()
         {
-            SetConfig(_currentIndex);
+            SSM = new SpawnerStateMachine();
         }
-        private void SetConfig(int index)
-        {
-            _currentConfig = _configs[index];
-        }
+
         private void Update()
         {
-            if (_currentConfig == null) return;
-
-            if (_spawned >= _configs.Count)
+            if (SSM != null)
             {
-                StartCoroutine(DelayForRespawn(_currentConfig.DelayForRespawn));
-                _spawned = 0;
-                _currentConfig = null;
-                return;
-            }
+                var state = SSM.CurrentState as SpawnerState;
+                state.Manager = this;
+                SSM.CurrentState.Update();
 
-            _timeAfterLastSpawn += Time.deltaTime;
-
-            if (_timeAfterLastSpawn >= _currentConfig.Delay)
-            {
-                _enemies.Add(InstantiateEnemy());
-                _spawned++;
-                _timeAfterLastSpawn = 0;
+                if (SSM.CurrentState.NeedTransition)
+                {
+                    SSM.SetCurrentState(SSM.CurrentState.TargetState);
+                }
             }
         }
-        private IEnumerator DelayForRespawn(float delay)
-        {
-            
-            yield return new WaitForSeconds(delay);
-            OnRespawnEnemyEvent?.Invoke();
-            _currentIndex++;
-            if (_currentIndex >= _configs.Count)
-            {
-                EditorApplication.isPaused = true;
-                _currentIndex = 0;
-            }
-            SetConfig(_currentIndex);
-            Debug.Log("Respawn!!!!!!!");
-        }
-        private Enemy InstantiateEnemy()
+     
+        public Enemy InstantiateEnemy()
         {
             var randWithinCircle = (Vector2)transform.position + UnityEngine.Random.insideUnitCircle * _spawnRadius;
             Enemy enemy = Instantiate(_currentConfig.Tamplate, randWithinCircle, Quaternion.identity).GetComponent<Enemy>();

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Script.StateMachine
 {
-
+    [CreateAssetMenu(fileName = "EnemyStateAttack", menuName = "State/EnemyState/EnemyStateAttack")]
     public class EnemyStateAttack : EnemyState
     {
         [SerializeField, Range(1.5f, 5f)] private float _attackDistance;

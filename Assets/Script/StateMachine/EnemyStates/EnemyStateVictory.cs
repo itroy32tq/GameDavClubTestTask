@@ -3,12 +3,8 @@ namespace Script.StateMachine
 {
     public class EnemyStateVictory : EnemyState
     {
-        public override void Enter()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public override void Exit()
+      
+        public override void Update()
         {
             throw new System.NotImplementedException();
         }

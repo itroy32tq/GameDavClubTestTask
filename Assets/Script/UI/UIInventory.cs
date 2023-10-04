@@ -44,7 +44,7 @@ namespace Script.UI
         }
         private void OnUIItemRemoveButtonClick(object sender, Item Item)
         {
-            ItemsManager.Instance.OnCreateItemOnMap(_playerController, (Item)Item.Clone());
+            ItemsManager.Instance.OnCreateItemOnMap(_playerController, Item.Clone(Item));
             InventoryModel.Remove(sender, Item.Info.Id, Item.State.Amount);
         }
         private void OnShowInventaryButtonClick()
