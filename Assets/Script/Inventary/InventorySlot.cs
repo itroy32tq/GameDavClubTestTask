@@ -6,7 +6,7 @@ namespace Script.Inventoty
 {
     public class InventorySlot : IInventorySlot
     {
-        public bool IsFull => !IsEmpty && Amount == Capacity;
+        public bool IsFull => !IsEmpty && Amount >= Capacity;
         public bool IsEmpty => Item == null;
         public Item Item { get; private set; }
         public Type ItemType => Item.Type;

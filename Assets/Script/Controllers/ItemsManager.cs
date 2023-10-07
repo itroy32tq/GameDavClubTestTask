@@ -17,11 +17,8 @@ namespace PoketZone
         [SerializeField, Range(1f, 5f)] private float _dropRadius = 1.5f;
         private List<ItemInfo> _assetsList = new();
 
-        public static ItemsManager Instance;
-
         private void Awake()
         {
-            Instance = this;
             LoadItemAsset();
         }
         private void LoadItemAsset()

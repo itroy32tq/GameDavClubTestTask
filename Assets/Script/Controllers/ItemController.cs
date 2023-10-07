@@ -10,6 +10,7 @@ namespace PoketZone
         [SerializeField] private SpriteRenderer _spriteRenderer;
         [SerializeField] private BoxCollider2D _boxCollider;
         private Item _item;
+
         public Item ItemOnMap { get => _item; set => _item = value; }
         private void Awake()
         {

@@ -1,25 +1,77 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
-namespace Script.StateMachine
+namespace Assets.Script.Interfaces
 {
-    public abstract class StateMachine
+    public abstract class StateMachine<TInitializer>
     {
-        private State _currentState;
-        public State CurrentState { get=> _currentState; protected set => _currentState = value; }
-        protected Dictionary<Type, State> StateMap { get; set; }
-        protected State GetStateByType<T>() where T : State
-        {
-            return StateMap[typeof(T)];
-        }
-        public void SetCurrentState(State newState)
-        {
-            if (_currentState != null)
-                _currentState.Exit();
+        private IState<TInitializer> _currentState;
+        private bool _isTicking;
+        private TInitializer _initializer;
+        protected IState<TInitializer> CurrentState => _currentState;
+        protected TInitializer Initializer => _initializer;
+        protected Dictionary<Type, IState<TInitializer>> StateMap { get; set; }
 
-            _currentState = newState;
-            _currentState.Enter();
+        public StateMachine(params IState<TInitializer>[] states)
+        {
+
+            StateMap = new Dictionary<Type, IState<TInitializer>>(states.Length);
+            foreach (var state in states) 
+            { 
+                StateMap.Add(state.GetType(), state);
+            }
         }
-        public abstract void Initialize();
+        public virtual void SwitchState<TState>() where TState : IState<TInitializer>
+        {
+            TryExitPreviosState<TState>();
+            GetNewState<TState>();
+            TryEnterNewState<TState>();
+            TryTickNewState<TState>();
+        }
+
+        protected void TryInitNewState<TState>() where TState : IState<TInitializer>
+        {
+            if (_currentState is IInitable initable)
+                initable.OnInit(_initializer);
+        }
+
+        protected void TryExitPreviosState<TState>() where TState : IState<TInitializer>
+        {
+            if (_currentState is IExitable exitable)
+                exitable.OnExit();
+        }
+        protected void GetNewState<TState>() where TState : IState<TInitializer>
+        {
+            _currentState = GetStateByType<TState>();
+            _isTicking = false;
+        }
+        protected void TryTickNewState<TState>() where TState : IState<TInitializer>
+        {
+            if (_currentState is ITickable tickable)
+            {
+                _isTicking = true;
+                StartTick(tickable);
+            }
+            else
+                _isTicking = false;
+        }
+        private async void StartTick(ITickable tickable)
+        {
+            while (_isTicking)
+            {
+                tickable.Tick();
+                await Task.Yield();
+            }
+        }
+        protected void TryEnterNewState<TState>() where TState : IState<TInitializer>
+        {
+            if (_currentState is IEnterable enterable)
+                enterable.OnEnter();
+        }
+        protected TState GetStateByType<TState>() where TState : IState<TInitializer>
+        {
+            return (TState)StateMap[typeof(TState)];
+        }
     }
 }

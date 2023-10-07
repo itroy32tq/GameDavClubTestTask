@@ -127,11 +127,11 @@ namespace Script.Inventoty
             var amountToAdd = fits
                 ? item.State.Amount : item.Info.MaxItemsInInventarySlot - slot.Amount;
             var amountLeft = item.State.Amount - amountToAdd;
-            var cloneItem = item.Clone();
+            var cloneItem = item.Clone<Item>();
             cloneItem.State.Amount = amountToAdd;
 
             if (slot.IsEmpty)
-                slot.SetItem((Item)cloneItem);
+                slot.SetItem(cloneItem);
             else
                 slot.Item.State.Amount += amountToAdd;
 

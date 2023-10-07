@@ -306,7 +306,8 @@ MonoBehaviour:
   _health: 5
   _rigidbody: {fileID: 6625933774083106526}
   _name: "\u0421hushka"
-  _reward: 1
+  _visibilityDistance: 9
+  _attackDistance: 2
 --- !u!50 &6625933774083106526
 Rigidbody2D:
   serializedVersion: 4

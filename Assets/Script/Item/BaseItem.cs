@@ -1,4 +1,5 @@
-﻿using Script.Structs;
+﻿using Assets.Script.Interfaces;
+using Script.Interfaces;
 using System;
 
 namespace Script.ItemSpace
@@ -8,6 +9,12 @@ namespace Script.ItemSpace
         public ItemInfo Info { get; set; }
         public ItemState State { get; set; }
         public Type Type { get; set; }
-        public abstract BaseItem Clone();
+        public T Clone<T>() where T : BaseItem
+        {
+            var clonedItem = (T)MemberwiseClone();
+            clonedItem.State = new ItemState();
+            clonedItem.State.Amount = State.Amount;
+            return clonedItem;
+        }
     }
 }
