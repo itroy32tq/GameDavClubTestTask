@@ -1,3 +1,4 @@
+using Assets.Script.Controllers;
 using PoketZone;
 using Script.Inventoty;
 using Script.ItemSpace;
@@ -44,7 +45,7 @@ namespace Script.UI
         }
         private void OnUIItemRemoveButtonClick(object sender, Item Item)
         {
-            ItemsManager.Instance.OnCreateItemOnMap(_playerController, Item.Clone(Item));
+            Singleton<ItemsManager>.Instance.OnCreateItemOnMap(_playerController, Item.Clone<Item>());
             InventoryModel.Remove(sender, Item.Info.Id, Item.State.Amount);
         }
         private void OnShowInventaryButtonClick()
@@ -57,7 +58,7 @@ namespace Script.UI
         {
             foreach (var part in data)
             {
-                var info = ItemsManager.Instance.GetAssetForId(part.ItemInfoId);
+                var info = Singleton<ItemsManager>.Instance.GetAssetForId(part.ItemInfoId);
                 Item item = new Item(info);
                 item.State.Amount = part.Count;
                 if (!InventoryModel.TryToAdd(this, item))

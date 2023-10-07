@@ -1,4 +1,5 @@
 ﻿using Assets.Script.Controllers;
+using Assets.Script.StateMachine;
 using Script.Configurations;
 using Script.StateMachine;
 using Script.Structs;
@@ -20,39 +21,24 @@ namespace PoketZone
         [SerializeField] private float _spawnRadius = 3;
         [SerializeField] private StorageManager _storageManager;
         [SerializeField] private ItemsManager _itemsManager;
+        [SerializeField] private int _currentIndex = 0;
 
         private GameManagerConfig _currentConfig;
-        private int _currentIndex = 0;
-        private float _timeAfterLastSpawn;
-        private int _spawned = 0;
         private List<Enemy> _enemies = new();
 
-        protected SpawnerStateMachine SSM { get; private set; }
+        public SpawnerStateMachine<SpawnManager> SSM { get; private set; }
 
         public Action OnRespawnEnemyEvent;
         public List<GameManagerConfig> Configs => _configs;
         public GameManagerConfig CurrentConfig { get => _currentConfig; set => _currentConfig = value; }
+        public int CurrentIndex { get => _currentIndex; set => _currentIndex = value; }
 
         private void Start()
         {
-            SSM = new SpawnerStateMachine();
+            SSM = new SpawnerStateMachine<SpawnManager>(new SpawnerStateIdle(this), new SpawnerStateWork(this));
+            SSM.SwitchState<SpawnerStateIdle>();
         }
 
-        private void Update()
-        {
-            if (SSM != null)
-            {
-                var state = SSM.CurrentState as SpawnerState;
-                state.Manager = this;
-                SSM.CurrentState.Update();
-
-                if (SSM.CurrentState.NeedTransition)
-                {
-                    SSM.SetCurrentState(SSM.CurrentState.TargetState);
-                }
-            }
-        }
-     
         public Enemy InstantiateEnemy()
         {
             var randWithinCircle = (Vector2)transform.position + UnityEngine.Random.insideUnitCircle * _spawnRadius;

@@ -9,9 +9,10 @@ namespace Script.ItemSpace
         public ItemInfo Info { get; set; }
         public ItemState State { get; set; }
         public Type Type { get; set; }
-        public T Clone<T>(T obj) where T : BaseItem
+        public T Clone<T>() where T : BaseItem
         {
-            var clonedItem = (T)obj.MemberwiseClone();
+            var clonedItem = (T)MemberwiseClone();
+            clonedItem.State = new ItemState();
             clonedItem.State.Amount = State.Amount;
             return clonedItem;
         }

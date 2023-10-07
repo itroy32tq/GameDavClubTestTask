@@ -8,6 +8,7 @@ using Script.Interfaces;
 using Script.Configurations;
 using Script.Structs;
 using System.Collections.Generic;
+using Assets.Script.Controllers;
 
 namespace PoketZone
 {
@@ -46,7 +47,7 @@ namespace PoketZone
             Health = configuration.BaseParams.MaxHealth;
             Speed = configuration.BaseParams.MoveSpeed;
             //оружие персонажа
-            var weaponInfo = ItemsManager.Instance.GetAssetForId(configuration.CurrentWeaponId);
+            var weaponInfo = Singleton<ItemsManager>.Instance.GetAssetForId(configuration.CurrentWeaponId);
             SetCurentWeapon(weaponInfo);
             //заполняем инвентарь
             _playerInventory.FillSlots(_playerConfiguration.InventoryItems);

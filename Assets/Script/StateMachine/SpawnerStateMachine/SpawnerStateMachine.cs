@@ -1,29 +1,16 @@
 ﻿
+using Assets.Script.Interfaces;
+using PoketZone;
 using UnityEngine;
 
 namespace Script.StateMachine
 {
-    public class SpawnerStateMachine: StateMachine
+    public class SpawnerStateMachine<SpawnManager> : StateMachine<SpawnManager>
     {
-        public SpawnerStateMachine()
+        public SpawnerStateMachine(params IState<SpawnManager>[] states) : base(states)
         {
-            Initialize();
-        }
-        public override void Initialize()
-        {
-            StateMap = new();
 
-            var enemyStates = Resources.LoadAll<State>("SpawnerStates");
+        }
 
-            foreach (EnemyState state in enemyStates)
-            {
-                StateMap[state.GetType()] = state;
-            }
-            SetDefaultState();
-        }
-        private void SetDefaultState()
-        {
-            SetCurrentState(GetStateByType<SpawnerStateIdle>());
-        }
     }
 }
