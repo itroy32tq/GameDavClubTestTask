@@ -5726,11 +5726,7 @@ Transform:
   - {fileID: 2111439244}
   - {fileID: 265707955}
   m_Father: {fileID: 0}
-<<<<<<< Updated upstream
   m_RootOrder: 3
-=======
-  m_RootOrder: 2
->>>>>>> Stashed changes
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1746393122
 GameObject:
@@ -5947,7 +5943,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 934833104873790878, guid: 8d0781e3141df0549b48586e9b2d3f4d, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 934833104873790878, guid: 8d0781e3141df0549b48586e9b2d3f4d, type: 3}
       propertyPath: m_LocalPosition.x
