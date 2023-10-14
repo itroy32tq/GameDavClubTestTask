@@ -26,7 +26,7 @@ namespace PoketZone
         [SerializeField] private int _currentIndex = 0;
 
         private GameManagerConfig _currentConfig;
-        private CustomPool<Unit> _customPool;
+        private UnitPool<Unit> _unitPool;
 
         public SpawnerStateMachine<SpawnManager> SSM { get; private set; }
 
@@ -43,7 +43,8 @@ namespace PoketZone
         }
         public void InitPool()
         {
-            _customPool = new CustomPool<Unit>(_currentConfig.Tamplate, _currentConfig.Count, transform)
+            UnitFactory unitFactory = new(_currentConfig.Tamplate, transform);
+            _unitPool = new UnitPool<Unit>(unitFactory, _currentConfig.Count)
             {
                 AutoExpand = true
             };
@@ -51,17 +52,17 @@ namespace PoketZone
 
         private void OnDisable()
         {
-            foreach(var enemy in _customPool.Pool)
+            foreach(var enemy in _unitPool.Pool)
                 enemy.OnUnitDiesEvent -= _itemsManager.OnUnitDies;
         }
 
         public Enemy CreateUnit()
         {
             var randWithinCircle = (Vector2)transform.position + UnityEngine.Random.insideUnitCircle * _spawnRadius;
-            Enemy enemy = _customPool.GetFreeElement() as Enemy;
+            Enemy enemy = _unitPool.GetFreeElement() as Enemy;
             enemy.transform.position = randWithinCircle;
             enemy.OnUnitDiesEvent += _itemsManager.OnUnitDies;
-            enemy.OnUnitDiesEvent += _customPool.Release;
+            enemy.OnUnitDiesEvent += _unitPool.Release;
             enemy.Init(_player);
             return enemy;
 

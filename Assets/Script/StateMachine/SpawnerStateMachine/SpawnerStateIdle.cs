@@ -18,7 +18,7 @@ namespace Script.StateMachine
         }
         public override void OnEnter()
         {
-            if (IsConfigerationExist())
+            if (IsConfigerationExist() && Initializer != null)
             {
                 SetCurrentConfig(CurrentIndex);
                 Initializer.InitPool();

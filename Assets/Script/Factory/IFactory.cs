@@ -1,5 +1,4 @@
-﻿using PoketZone;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +7,8 @@ using UnityEngine;
 
 namespace Assets.Script.Factory
 {
-    public abstract class EnemyFactory : MonoBehaviour, IUnitFactoryMethod<Enemy>
+    public interface IFactory<out T> where T : MonoBehaviour
     {
-        public abstract Enemy CreateUnit();
-        
+        T Create();
     }
 }
