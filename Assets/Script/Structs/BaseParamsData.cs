@@ -12,7 +12,7 @@ namespace Script.Structs
         public float MoveSpeed;
         [Tooltip("Емкость Инвентаря")]
         public int InventoryCapacity;
-        public static BaseParamsData Empty => new BaseParamsData()
+        public static BaseParamsData Empty => new()
         {
             MaxHealth = 10f,
             MoveSpeed = 1f,

@@ -1,4 +1,6 @@
 ﻿using Assets.Script.Controllers;
+using Assets.Script.Factory;
+using Assets.Script.Pool;
 using Assets.Script.StateMachine;
 using Script.Configurations;
 using Script.StateMachine;
@@ -14,7 +16,7 @@ using UnityEngine;
 
 namespace PoketZone
 {
-    public class SpawnManager: MonoBehaviour
+    public class SpawnManager : MonoBehaviour, IUnitFactoryMethod<Enemy>
     {
         [SerializeField] private List<GameManagerConfig> _configs;
         [SerializeField] private PlayerController _player;
@@ -24,7 +26,7 @@ namespace PoketZone
         [SerializeField] private int _currentIndex = 0;
 
         private GameManagerConfig _currentConfig;
-        private List<Enemy> _enemies = new();
+        private CustomPool<Unit> _customPool;
 
         public SpawnerStateMachine<SpawnManager> SSM { get; private set; }
 
@@ -37,21 +39,32 @@ namespace PoketZone
         {
             SSM = new SpawnerStateMachine<SpawnManager>(new SpawnerStateIdle(this), new SpawnerStateWork(this));
             SSM.SwitchState<SpawnerStateIdle>();
+            
+        }
+        public void InitPool()
+        {
+            _customPool = new CustomPool<Unit>(_currentConfig.Tamplate, _currentConfig.Count, transform)
+            {
+                AutoExpand = true
+            };
         }
 
-        public Enemy InstantiateEnemy()
-        {
-            var randWithinCircle = (Vector2)transform.position + UnityEngine.Random.insideUnitCircle * _spawnRadius;
-            Enemy enemy = Instantiate(_currentConfig.Tamplate, randWithinCircle, Quaternion.identity).GetComponent<Enemy>();
-            enemy.OnUnitDiesEvent += _itemsManager.OnUnitDies;
-            enemy.name = _enemies.Count.ToString();
-            enemy.Init(_player);
-            return enemy;
-        }
         private void OnDisable()
         {
-            foreach(var enemy in _enemies)
+            foreach(var enemy in _customPool.Pool)
                 enemy.OnUnitDiesEvent -= _itemsManager.OnUnitDies;
+        }
+
+        public Enemy CreateUnit()
+        {
+            var randWithinCircle = (Vector2)transform.position + UnityEngine.Random.insideUnitCircle * _spawnRadius;
+            Enemy enemy = _customPool.GetFreeElement() as Enemy;
+            enemy.transform.position = randWithinCircle;
+            enemy.OnUnitDiesEvent += _itemsManager.OnUnitDies;
+            enemy.OnUnitDiesEvent += _customPool.Release;
+            enemy.Init(_player);
+            return enemy;
+
         }
     }
 }

@@ -9,6 +9,7 @@ namespace Script.Inventoty
 {
     public class InventoryWithSlots : IInventory
     {
+        
         public event Action<object, Item, int> OnInventoryItemAddedEvent;
         public event Action<object, string, int> OnInventoryItemRemoveEvent;
         public event Action<object> OnInventoryStateChangedEvent;
@@ -16,7 +17,7 @@ namespace Script.Inventoty
         public bool IsFull => _slots.All(_slots => _slots.IsFull);
         public IInventorySlot EmptySlot => _slots.Find(slot => slot.IsEmpty);
 
-        private List<IInventorySlot> _slots;
+        private readonly List<IInventorySlot> _slots;
         public InventoryWithSlots(int capacity)
         {
             Capacity = capacity;

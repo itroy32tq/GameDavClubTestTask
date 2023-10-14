@@ -15,7 +15,7 @@ namespace Assets.Script.StateMachine
     {
         private int _spawned = 0;
         private float _timeAfterLastSpawn = 0;
-        private List<Enemy> _enemies = new();
+        private readonly List<Enemy> _enemies = new();
         private float _delay;
 
         public SpawnerStateWork(SpawnManager initializer) : base(initializer)
@@ -37,7 +37,7 @@ namespace Assets.Script.StateMachine
 
             if (_timeAfterLastSpawn >= CurrentConfig.Delay)
             {
-                _enemies.Add(Initializer.InstantiateEnemy());
+                _enemies.Add(Initializer.CreateUnit());
                 _spawned++;
                 _timeAfterLastSpawn = 0;
             }

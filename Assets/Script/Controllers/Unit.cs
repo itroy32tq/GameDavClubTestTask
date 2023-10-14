@@ -30,7 +30,7 @@ namespace PoketZone
             OnUnitHealtChangedEvent?.Invoke(_currentHealth, _health);
             if (Health <= 0)
             {
-                Destroy(gameObject);
+                //Destroy(gameObject);
                 OnUnitDiesEvent?.Invoke(this);
             }
         }  

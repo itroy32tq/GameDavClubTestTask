@@ -1,7 +1,3 @@
-using Assets.Script.Interfaces;
-using Script.Interfaces;
-using Script.Structs;
-using System;
 
 namespace Script.ItemSpace
 {

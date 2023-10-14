@@ -8,9 +8,9 @@ namespace Assets.Script.Interfaces
     {
         private IState<TInitializer> _currentState;
         private bool _isTicking;
-        private TInitializer _initializer;
+
         protected IState<TInitializer> CurrentState => _currentState;
-        protected TInitializer Initializer => _initializer;
+        protected TInitializer Initializer { get; }
         protected Dictionary<Type, IState<TInitializer>> StateMap { get; set; }
 
         public StateMachine(params IState<TInitializer>[] states)
@@ -33,7 +33,7 @@ namespace Assets.Script.Interfaces
         protected void TryInitNewState<TState>() where TState : IState<TInitializer>
         {
             if (_currentState is IInitable initable)
-                initable.OnInit(_initializer);
+                initable.OnInit(Initializer);
         }
 
         protected void TryExitPreviosState<TState>() where TState : IState<TInitializer>

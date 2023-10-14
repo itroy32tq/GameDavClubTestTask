@@ -21,6 +21,7 @@ namespace Script.StateMachine
             if (IsConfigerationExist())
             {
                 SetCurrentConfig(CurrentIndex);
+                Initializer.InitPool();
                 Initializer.SSM.SwitchState<SpawnerStateWork>();
             }
 

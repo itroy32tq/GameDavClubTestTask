@@ -6,8 +6,8 @@ namespace Assets.Script.Controllers
     {
         private static T _instance;
 
-        private static readonly object Lock = new object();
-        private bool _persistent = true;
+        private static readonly object Lock = new();
+        private readonly bool _persistent = true;
         public static T Instance
         {
             get 

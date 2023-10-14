@@ -1,6 +1,4 @@
-using Assets.Script.Interfaces;
 using Assets.Script.StateMachine;
-using Script.StateMachine;
 using UnityEngine;
 
 namespace PoketZone

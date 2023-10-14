@@ -1,17 +1,12 @@
 ﻿using Assets.Script.Interfaces;
 using PoketZone;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Script.StateMachine
 {
     public class EnemyStateAttack : EnemyState, ITickable
     {
-        private float _attackDistance;
+        private readonly float _attackDistance;
         private Vector2 _direction;
         private float _timer = 0f;
 

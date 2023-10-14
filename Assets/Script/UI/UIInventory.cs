@@ -15,8 +15,8 @@ namespace Script.UI
         [SerializeField] private Transform _grid;
         [SerializeField] private Button _showInventoryButton;
 
-        private List<UIInventorySlot> _uiSlotList = new List<UIInventorySlot>();
-        private List<UIItem> _uiItemList = new List<UIItem>();
+        private readonly List<UIInventorySlot> _uiSlotList = new();
+        private readonly List<UIItem> _uiItemList = new();
         private InventoryStateUpdater _updater;
         private PlayerController _playerController;
         public InventoryStateUpdater InventoryUpdater => _updater;
@@ -59,7 +59,7 @@ namespace Script.UI
             foreach (var part in data)
             {
                 var info = Singleton<ItemsManager>.Instance.GetAssetForId(part.ItemInfoId);
-                Item item = new Item(info);
+                Item item = new(info);
                 item.State.Amount = part.Count;
                 if (!InventoryModel.TryToAdd(this, item))
                     Debug.Log("не удалось добавить предметы из конфигурации в инвентарь");

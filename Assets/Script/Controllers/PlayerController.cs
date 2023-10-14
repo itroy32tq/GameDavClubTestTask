@@ -1,12 +1,10 @@
 using Script.UI;
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 using Script.Inventoty;
 using Script.ItemSpace;
 using Script.Interfaces;
 using Script.Configurations;
-using Script.Structs;
 using System.Collections.Generic;
 using Assets.Script.Controllers;
 

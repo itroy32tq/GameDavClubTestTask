@@ -1,11 +1,5 @@
-using Assets.Script.Controllers;
-using Script.Configurations;
 using Script.ItemSpace;
-using Script.Structs;
-using Script.UI;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace PoketZone
@@ -15,7 +9,7 @@ namespace PoketZone
         [SerializeField] private PlayerController _player;
         [SerializeField] private ItemController _itenOnMapPrefab;
         [SerializeField, Range(1f, 5f)] private float _dropRadius = 1.5f;
-        private List<ItemInfo> _assetsList = new();
+        private readonly List<ItemInfo> _assetsList = new();
 
         private void Awake()
         {

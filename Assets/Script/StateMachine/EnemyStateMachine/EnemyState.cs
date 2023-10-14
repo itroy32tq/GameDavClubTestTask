@@ -1,6 +1,5 @@
 ﻿using Assets.Script.Interfaces;
 using PoketZone;
-using UnityEngine;
 
 namespace Assets.Script.StateMachine
 {
